@@ -8,6 +8,7 @@ export default function Figure({ listOfStates }: Props) {
   const moveSpoonPixels = 10
   const initialPosition = 10
   const finalPosition = 100
+  const marginBottomSpoonInitialPosition = -20
 
   function lenghtOfStates() {
     let lenght = 0
@@ -22,6 +23,7 @@ export default function Figure({ listOfStates }: Props) {
     const inputsLenght = lenghtOfStates()
 
     let move = initialPosition + (moveSpoonPixels * inputsLenght)
+    let spoonPosition = marginBottomSpoonInitialPosition
     
     const initialMove = initialPosition + (moveSpoonPixels * inputsLenght) <= finalPosition
     const moveToLeft = initialPosition + (moveSpoonPixels * inputsLenght) > finalPosition && Number(String(initialPosition + (moveSpoonPixels * inputsLenght))[0]) % 2 === 1
@@ -47,8 +49,19 @@ export default function Figure({ listOfStates }: Props) {
       move = move - Number(count)
     }
 
+    if (move > 20 && move <= 40) {
+      spoonPosition -= 2
+    } else if (move > 40 && move <= 60) {
+      spoonPosition -= 4
+    } else if (move > 60 && move <= 80) {
+      spoonPosition -= 2
+    } else {
+      spoonPosition = marginBottomSpoonInitialPosition
+    }
+
     return {
-      marginLeft: move
+      marginLeft: move,
+      marginBottom: spoonPosition
     }
   }
 
