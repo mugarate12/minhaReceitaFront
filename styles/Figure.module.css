@@ -18,6 +18,8 @@
 
   z-index: -9999;
 
+  transition: 0.05s;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,6 +34,8 @@
   border-top-right-radius: 20%;
   border-top-left-radius: 20%;
 
+  transition: 0.05s;
+
   background-color: #DBB2AD;
 }
 
@@ -45,6 +49,8 @@
 
   border-radius: 50%;
 
+  transition: 0.05s;
+
   background-color: #DBB2AD;
 }
 
@@ -53,6 +59,8 @@
   width: 20px;
 
   border-radius: 50%;
+
+  transition: 0.05s;
 
   background-color: #F2D5CB;
 }
