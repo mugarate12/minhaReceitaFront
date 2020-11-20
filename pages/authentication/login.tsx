@@ -13,6 +13,7 @@ export default function Login() {
       <Figure listOfStates={[email, password]}/>
 
       <form className={styles.formLogin}>
+        {/* email input */}
         <TextField
           label="email"
           id="outlined-size-small"
@@ -26,6 +27,7 @@ export default function Login() {
 
         <br/>
 
+        {/* password input */}
         <TextField
           label="password"
           id="outlined-size-small"
@@ -33,15 +35,11 @@ export default function Login() {
           size="small"
           type="password"
           className={styles.inputLogin}
+          style={{marginBottom: '10px'}}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </form>
-
-      
-      {/* <input type="text" value={email} onChange={e => setEmail(e.target.value)}/>
-      <br/>
-      <input type="password" value={password} onChange={e => setPassword(e.target.value)}/> */}
     </>
   )
 }

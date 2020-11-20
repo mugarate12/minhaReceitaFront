@@ -49,6 +49,7 @@ export default function Figure({ listOfStates }: Props) {
       move = move - Number(count)
     }
 
+    // alterar a posição da colher a cada 2 digitos (e consequentemente dois movimentos) pro movimento ficar mais uniforme
     if (move > 20 && move <= 40) {
       spoonPosition -= 2
     } else if (move > 40 && move <= 60) {
