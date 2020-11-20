@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Head from 'next/head'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 import styles from './../../styles/Login.module.css'
 import Figure from './../../components/figure'
@@ -23,7 +24,7 @@ export default function Login() {
         {/* email input */}
         <TextField
           label="email"
-          id="outlined-size-small"
+          // id="outlined-size-small"
           variant="outlined"
           size="small"
           className={styles.inputLogin}
@@ -37,7 +38,7 @@ export default function Login() {
         {/* password input */}
         <TextField
           label="password"
-          id="outlined-size-small"
+          // id="outlined-size-small"
           variant="outlined"
           size="small"
           type="password"
@@ -52,7 +53,23 @@ export default function Login() {
         <p className={styles.authenticationBtnText}>Não consigo autenticar</p>
       </button>
 
+      <div className={styles.optionsLoginBtnContainer}>
+        <Button variant="outlined" color="primary" size="small">
+          [G] entrar
+        </Button>
 
+        <Button variant="outlined" color="secondary" size="small">
+          inscrever-se
+        </Button>
+      </div>
+
+      <Button variant="contained" color="primary" size="medium" style={{marginTop: '15px'}}>
+        Entrar
+      </Button>
+
+      <footer className={styles.loginFooter}>
+        Anuncio
+      </footer>
     </div>
   )
 }

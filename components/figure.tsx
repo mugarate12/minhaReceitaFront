@@ -25,9 +25,9 @@ export default function Figure({ listOfStates }: Props) {
     let move = initialPosition + (moveSpoonPixels * inputsLenght)
     let spoonPosition = marginBottomSpoonInitialPosition
     
-    const initialMove = initialPosition + (moveSpoonPixels * inputsLenght) <= finalPosition
-    const moveToLeft = initialPosition + (moveSpoonPixels * inputsLenght) > finalPosition && Number(String(initialPosition + (moveSpoonPixels * inputsLenght))[0]) % 2 === 1
-    const moveToRight = initialPosition + (moveSpoonPixels * inputsLenght) > finalPosition && Number(String(initialPosition + (moveSpoonPixels * inputsLenght))[0]) % 2 === 0
+    const initialMove = move <= finalPosition
+    const moveToLeft = move > finalPosition && Number(String(move)[0]) % 2 === 1
+    const moveToRight = move > finalPosition && Number(String(move)[0]) % 2 === 0
 
     if (initialMove) {
       move = initialPosition + (moveSpoonPixels * inputsLenght)
@@ -49,7 +49,6 @@ export default function Figure({ listOfStates }: Props) {
       move = move - Number(count)
     }
 
-    // alterar a posição da colher a cada 2 digitos (e consequentemente dois movimentos) pro movimento ficar mais uniforme
     if (move > 20 && move <= 40) {
       spoonPosition -= 2
     } else if (move > 40 && move <= 60) {
@@ -61,7 +60,7 @@ export default function Figure({ listOfStates }: Props) {
     }
 
     return {
-      marginLeft: move,
+      marginLeft: move + 10,
       marginBottom: spoonPosition
     }
   }
