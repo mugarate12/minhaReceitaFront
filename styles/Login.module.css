@@ -1,7 +1,44 @@
-.formLogin {
+.container {
+  height: 100vh;
   width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formLogin {
+  
 }
 
 .inputLogin {
   width: 150px;
+}
+
+.authenticationBtn {
+  border: 0;
+  padding: 0;
+  margin: 0;
+
+  background-color: transparent;
+  outline: none;
+
+  cursor: pointer;
+
+  transition: 0.5s;
+}
+
+.authenticationBtn:active {
+  opacity: 0.5;
+  transition: 0.5s;
+
+  padding: 2px;
+  border: 1px solid black;
+}
+
+.authenticationBtnText {
+  margin: 0;
+
+  color: gray;
 }
