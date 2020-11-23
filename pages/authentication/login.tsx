@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button'
 import styles from './../../styles/Login.module.css'
 import Figure from './../../components/figure'
 import Header from './../../components/Header'
+import Input from './../../components/Input'
 
 export default function Login() {
   const [email, setEmail] = useState<string>('')
@@ -24,31 +25,10 @@ export default function Login() {
 
         <form className={styles.formLogin}>
           {/* email input */}
-          <TextField
-            label="email"
-            // id="outlined-size-small"
-            variant="outlined"
-            size="small"
-            className={styles.inputLogin}
-            style={{marginBottom: '10px'}}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
+          <Input label='email' state={email} setState={setEmail} />
           <br/>
-
           {/* password input */}
-          <TextField
-            label="password"
-            // id="outlined-size-small"
-            variant="outlined"
-            size="small"
-            type="password"
-            className={styles.inputLogin}
-            style={{marginBottom: '10px'}}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <Input label='password' type='password' state={password} setState={setPassword} />
         </form>
 
         <button className={styles.authenticationBtn}>
@@ -68,7 +48,6 @@ export default function Login() {
         <Button variant="contained" color="primary" size="medium" style={{marginTop: '15px'}}>
           Entrar
         </Button>
-
       </div>
     </>
   )
