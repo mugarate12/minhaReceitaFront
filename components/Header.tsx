@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Button from '@material-ui/core/Button'
 
 import styles from './../styles/Header.module.css'
+import CustomButton from './Button'
 
 type Props = {
   isHomePage?: boolean;
@@ -22,13 +23,20 @@ export default function Header({ isHomePage }: Props) {
       {
         isHomePage ?
           (<div className={styles.btnContainer}>
-            <Button variant="contained" color="primary" size="medium" style={{marginTop: '15px'}} onClick={() => router.push('/authentication/login')}>
+            <CustomButton
+              backgroundColor="#FDDADA"
+              onclick={() => router.push('/authentication/login')}
+              margin={{ marginRight: '10px' }}
+            >
               Entrar
-            </Button>
+            </CustomButton>
 
-            <Button variant="contained" color="secondary" size="medium" style={{marginTop: '15px'}}>
-              Cadastrar
-            </Button>
+            <CustomButton
+              backgroundColor='rgba(232, 197, 229, 90%)'
+              onclick={() => router.push('/authentication/login')}
+            >
+              Cadastrar-se
+            </CustomButton>
           </div>)
         : (<></>)
       }

@@ -6,6 +6,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  background-color: #FFE9D6;
 }
 
 .formLogin {

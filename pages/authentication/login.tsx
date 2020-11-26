@@ -7,6 +7,7 @@ import styles from './../../styles/Login.module.css'
 import Figure from './../../components/figure'
 import Header from './../../components/Header'
 import Input from './../../components/Input'
+import CustomButton from './../../components/Button'
 
 export default function Login() {
   const [email, setEmail] = useState<string>('')
@@ -36,18 +37,21 @@ export default function Login() {
         </button>
 
         <div className={styles.optionsLoginBtnContainer}>
-          <Button variant="outlined" color="primary" size="small">
+          <CustomButton variant='outlined' size='small' colorMaterialUI='primary'>
             [G] entrar
-          </Button>
+          </CustomButton>
 
-          <Button variant="outlined" color="secondary" size="small">
-            inscrever-se
-          </Button>
+          <CustomButton variant='outlined' size='small' colorMaterialUI='secondary'>
+            Inscrever-se
+          </CustomButton>
         </div>
 
-        <Button variant="contained" color="primary" size="medium" style={{marginTop: '15px'}}>
+        <CustomButton
+          backgroundColor='rgba(232, 197, 229, 90%)'
+          margin={{ marginTop: '15px' }}
+        >
           Entrar
-        </Button>
+        </CustomButton>
       </div>
     </>
   )

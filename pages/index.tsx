@@ -12,6 +12,11 @@ export default function Home() {
       </Head>
 
       <Header isHomePage={true} />
+
+      <div className={styles.container}>
+        <h1 className={styles.title}>Seu Lugar</h1>
+        <h2 className={styles.subtitle}>pra reiventar e guardar todas as suas ideias na cozinha</h2>
+      </div>
     </>
   )
 }
