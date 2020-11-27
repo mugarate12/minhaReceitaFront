@@ -13,7 +13,7 @@ export default function Layout({
   return (
     <>
       <Head>
-        <link rel="icon" href="/minhareceita.ico" />
+        <link rel="icon" href="/favicon.ico" />
         <meta
           name="reivente e guarde suas receitas no melhor lugar"
           content="meu conteúdo"
