@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 import styles from './../../styles/Login.module.css'
+import Layout from './../../components/Layout'
 import Figure from './../../components/figure'
 import Header from './../../components/Header'
 import Input from './../../components/Input'
@@ -14,7 +15,7 @@ export default function Login() {
   const [password, setPassword] = useState<string>('')
 
   return (
-    <>
+    <Layout>
       <Head>
         <title>Login</title>
       </Head>
@@ -53,6 +54,6 @@ export default function Login() {
           Entrar
         </CustomButton>
       </div>
-    </>
+    </Layout>
   )
 }
