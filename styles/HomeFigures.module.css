@@ -1,0 +1,83 @@
+.chef {
+  position: absolute;
+  top: 90px;
+  left: calc(50% - 45px);
+
+  width: 90px;
+  height: 90px;
+
+  opacity: 0.3;
+}
+
+.cutlery {
+  position: absolute;
+  top: 80vh;
+  left: calc(50% - 45px);
+
+  width: 90px;
+  height: 90px;
+
+  opacity: 0.3;
+}
+
+.knife {
+  position: absolute;
+  top: 190px;
+  left: 15%;
+
+  width: 100px;
+  height: 100px;
+
+  opacity: 0.7;
+}
+
+.pan {
+  position: absolute;
+  top: calc(80vh - 90px);
+  left: 15%;
+
+  width: 100px;
+  height: 100px;
+
+  opacity: 0.7;
+}
+
+.forma {
+  position: absolute;
+  top: calc(80vh - 90px);
+  left: 85%;
+
+  width: 100px;
+  height: 100px;
+
+  opacity: 0.7;
+}
+
+.moedor {
+  position: absolute;
+  top: 190px;
+  left: 85%;
+
+  width: 100px;
+  height: 100px;
+
+  opacity: 0.7;
+}
+
+@media (max-width: 670px) {
+  .forma {
+    display: none;
+  }
+  
+  .knife {
+    display: none;
+  }
+
+  .moedor {
+    display: none;
+  }
+
+  .pan {
+    display: none;
+  }
+}
