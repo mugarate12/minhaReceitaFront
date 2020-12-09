@@ -1,25 +1,23 @@
 import { SetStateAction, Dispatch } from 'react';
 import TextField from '@material-ui/core/TextField'
 
-import styles from './../styles/Input.module.css'
-
 type Props = {
   label: string;
   type?: string;
   state: string;
   setState: Dispatch<SetStateAction<string>>;
+  width?: string;
+  marginLeft?: string;
 }
 
-export default function Input({ label, type, state, setState }: Props) {
+export default function Input({ label, type, state, setState, width, marginLeft }: Props) {
   return (
     <TextField
       label={label}
       type={type}
-      // id="outlined-size-small"
       variant="outlined"
       size="small"
-      className={styles.inputLogin}
-      style={{marginBottom: '10px'}}
+      style={{marginBottom: '10px', width: width, marginLeft: marginLeft}}
       value={state}
       onChange={(e) => setState(e.target.value)}
     />

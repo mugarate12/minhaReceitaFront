@@ -1,0 +1,11 @@
+.description {
+  position: absolute;
+
+  top: 60px;
+  left: 20px;
+
+  color: #747272;
+
+  font-size: 16px;
+  font-size: 1rem;
+}

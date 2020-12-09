@@ -32,7 +32,7 @@ export default function Header({ isHomePage }: Props) {
 
             <CustomButton
               backgroundColor='rgba(232, 197, 229, 90%)'
-              onclick={() => router.push('/authentication/login')}
+              onclick={() => router.push('/authentication/register')}
             >
               Cadastrar-se
             </CustomButton>

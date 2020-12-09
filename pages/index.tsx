@@ -21,9 +21,8 @@ export default function Home() {
         <h2 className={styles.subtitle}>pra reiventar e guardar todas as suas ideias na cozinha</h2>
       </div>
 
-      <div style={{height: '100vh', width: '100%', backgroundColor: '#333'}}>
-
-      </div>
+      {/* <div style={{height: '100vh', width: '100%', backgroundColor: '#333'}}>
+      </div> */}
     </Layout>
   )
 }

@@ -1,24 +1,28 @@
 import { useState } from 'react'
 import Head from 'next/head'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+import { useRouter } from 'next/router'
 
 import styles from './../../styles/Login.module.css'
 import Layout from './../../components/Layout'
 import Figure from './../../components/figure'
 import Header from './../../components/Header'
+import PageDescription from './../../components/PageDescription'
 import Input from './../../components/Input'
 import CustomButton from './../../components/Button'
 
 export default function Login() {
+  const router = useRouter()
+
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
   return (
     <Layout>
       <Head>
-        <title>Login</title>
+        <title>Entrar</title>
       </Head>
+
+      <PageDescription title='Home'/>
 
       <Header />
 
@@ -33,7 +37,10 @@ export default function Login() {
           <Input label='password' type='password' state={password} setState={setPassword} />
         </form>
 
-        <button className={styles.authenticationBtn}>
+        <button 
+          className={styles.authenticationBtn}
+          onClick={() => router.push('/authentication/sendPassword')}
+        >
           <p className={styles.authenticationBtnText}>Não consigo autenticar</p>
         </button>
 
@@ -48,7 +55,7 @@ export default function Login() {
         </div>
 
         <CustomButton
-          backgroundColor='rgba(232, 197, 229, 90%)'
+          backgroundColor='#d49898'
           margin={{ marginTop: '15px' }}
         >
           Entrar
