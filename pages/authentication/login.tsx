@@ -10,11 +10,44 @@ import PageDescription from './../../components/PageDescription'
 import Input from './../../components/Input'
 import CustomButton from './../../components/Button'
 
+import api from './../../config/api'
+
 export default function Login() {
   const router = useRouter()
 
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+
+  async function logUser() {
+    const emailNotEmpty = !!email
+    const passwordNotEmpty = !!password
+
+    if (emailNotEmpty && passwordNotEmpty) {
+      await api.post('/session', {
+        email,
+        password
+      })
+        .then(response => {
+          // aqui vai ser local storage mesmo
+          sessionStorage.setItem('token', response.data.token)
+        })
+        .catch(error => {
+          const isCelebrateError = error.response.status === 400
+          const invalidInputError = error.response.status === 406
+          const isNotDatabaseError = error.response.data.error.message !== 'Database Error'
+
+          if (isCelebrateError) {
+            alert('Informações incorretas, por favor, verifique os campos!')
+          } else if (invalidInputError && isNotDatabaseError) {
+            alert('Dados incorretos, verifique a informação!')
+          } else {
+            alert('Ocorreu algum erro inesperado, verifique as informações ou tente mais tarde!')
+          }
+        })
+    } else {
+      alert('Preencha todos os campos')
+    }
+  }
 
   return (
     <Layout>
@@ -57,6 +90,7 @@ export default function Login() {
         <CustomButton
           backgroundColor='#d49898'
           margin={{ marginTop: '15px' }}
+          // onclick={() => logUser()}
         >
           Entrar
         </CustomButton>

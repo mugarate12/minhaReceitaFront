@@ -9,8 +9,28 @@ import PageDescription from './../../components/PageDescription'
 import Input from './../../components/Input'
 import CustomButton from './../../components/Button'
 
+import api from './../../config/api'
+
 export default function Register() {
   const [email, setEmail] = useState<string>('')
+
+  async function requestNewPassword() {
+    const emailNotEmpty = !!email
+
+    if (emailNotEmpty) {
+      await api.put('/session', {
+        email
+      })
+        .then(response => {
+          alert('Mandamos um email com uma nova senha, verifique sua caixa de email em alguns instantes e siga os passos')
+        })
+        .catch(error => {
+          alert('Email invalido, verifique seu email!')
+        })
+    } else {
+      alert('Preencha o campo com seu email')
+    }
+  }
   
   return (
     <Layout>
@@ -32,6 +52,7 @@ export default function Register() {
         <CustomButton
           backgroundColor='#d49898'
           margin={{marginTop: '15px'}}
+          // onclick={() => requestNewPassword()}
         >
           Enviar email
         </CustomButton>
