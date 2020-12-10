@@ -17,7 +17,9 @@ export default function Register() {
   const [password, setPassword] = useState<string>('')
   const [confirmPassword, setConfirmPassword] = useState<string>('')
 
-  async function handleRegister() {
+  async function handleRegister(event) {
+    event.preventDefault()
+
     const nameNotEmpty = !!name
     const emailNotEmpty = !!email
     const passwordNotEmptyAndSameToConfirm = !!password && !!confirmPassword && password === confirmPassword
@@ -86,15 +88,17 @@ export default function Register() {
               marginLeft='25px'
             />
           </div>
+
+          <CustomButton
+            backgroundColor='#d49898'
+            margin={{marginTop: '15px'}}
+            // onclick={(e) => handleRegister(e)}
+            type='submit'
+          >
+            Cadastrar
+          </CustomButton>
         </form>
 
-        <CustomButton
-          backgroundColor='#d49898'
-          margin={{marginTop: '15px'}}
-          // onclick={() => handleRegister()}
-        >
-          Cadastrar
-        </CustomButton>
       </div>
     </Layout>
   )

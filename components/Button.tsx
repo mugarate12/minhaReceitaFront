@@ -9,6 +9,8 @@ type Props = {
   backgroundColor?: string,
   children?: any,
   onclick?: () => void,
+  type?: "button" | "submit" | "reset",
+  width?: string,
   margin?: {
     marginTop?: string,
     marginBottom?: string,
@@ -17,7 +19,7 @@ type Props = {
   }
 }
 
-export default function CustomButton({ variant, size, colorMaterialUI, textColor, backgroundColor, margin ,children, onclick }: Props) {
+export default function CustomButton({ variant, size, colorMaterialUI, textColor, backgroundColor, margin ,children, onclick, type, width }: Props) {
   
 
   return (
@@ -26,13 +28,15 @@ export default function CustomButton({ variant, size, colorMaterialUI, textColor
       variant={!!variant ? variant : "contained" }
       color={!!colorMaterialUI? colorMaterialUI : "primary"}
       size={!!size ? size : "medium"}
+      type={type}
       style={{
         marginTop: !!margin && !!margin.marginTop ? margin.marginTop : undefined,
         marginLeft: !!margin && !!margin.marginLeft ? margin.marginLeft : undefined,
         marginRight: !!margin && !!margin.marginRight ? margin.marginRight : undefined,
         marginBottom: !!margin && !!margin.marginBottom ? margin.marginBottom : undefined,
         color: !!textColor ? textColor : undefined,
-        backgroundColor: !!backgroundColor ? backgroundColor : undefined
+        backgroundColor: !!backgroundColor ? backgroundColor : undefined,
+        width: width
       }}
       onClick={onclick}
       >

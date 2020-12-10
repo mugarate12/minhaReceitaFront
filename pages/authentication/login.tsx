@@ -82,7 +82,12 @@ export default function Login() {
             [G] entrar
           </CustomButton>
 
-          <CustomButton variant='outlined' size='small' colorMaterialUI='secondary'>
+          <CustomButton 
+            variant='outlined' 
+            size='small' 
+            colorMaterialUI='secondary'
+            onclick={() => router.push('/authentication/register')}
+            >
             Inscrever-se
           </CustomButton>
         </div>
@@ -90,6 +95,7 @@ export default function Login() {
         <CustomButton
           backgroundColor='#d49898'
           margin={{ marginTop: '15px' }}
+          width='219px'
           // onclick={() => logUser()}
         >
           Entrar

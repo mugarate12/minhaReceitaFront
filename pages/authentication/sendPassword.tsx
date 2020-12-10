@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Head from 'next/head'
 
 import styles from './../../styles/sendPassword.module.css'
+
 import Layout from './../../components/Layout'
 import Figure from './../../components/figure'
 import Header from './../../components/Header'
@@ -14,7 +15,9 @@ import api from './../../config/api'
 export default function Register() {
   const [email, setEmail] = useState<string>('')
 
-  async function requestNewPassword() {
+  async function requestNewPassword(event) {
+    event.preventDefault()
+
     const emailNotEmpty = !!email
 
     if (emailNotEmpty) {
@@ -47,15 +50,17 @@ export default function Register() {
 
         <form className={styles.form}>
           <Input label='seu email' state={email} setState={setEmail} />
+          
+          <CustomButton
+            backgroundColor='#d49898'
+            margin={{marginTop: '15px'}}
+            // onclick={(e) => requestNewPassword(e)}
+            type='submit'
+          >
+            Enviar email
+          </CustomButton>
         </form>
 
-        <CustomButton
-          backgroundColor='#d49898'
-          margin={{marginTop: '15px'}}
-          // onclick={() => requestNewPassword()}
-        >
-          Enviar email
-        </CustomButton>
       </div>
     </Layout>
   );

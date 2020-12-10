@@ -17,7 +17,7 @@ export default function Input({ label, type, state, setState, width, marginLeft 
       type={type}
       variant="outlined"
       size="small"
-      style={{marginBottom: '10px', width: width, marginLeft: marginLeft}}
+      style={{marginBottom: '5px', width: width, marginLeft: marginLeft}}
       value={state}
       onChange={(e) => setState(e.target.value)}
     />
