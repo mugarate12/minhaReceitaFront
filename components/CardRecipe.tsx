@@ -1,68 +1,37 @@
-import { makeStyles } from '@material-ui/core/styles';
-
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-import Typography from '@material-ui/core/Typography'
-
 import RoomServiceIcon from '@material-ui/icons/RoomService'
 import TimerIcon from '@material-ui/icons/Timer'
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
 
-const useStyles = makeStyles(() => ({
-  root: {
-    display: 'flex',
-    width: '500px',
-    height: '150px',
-    backgroundColor: '#E8CFE8'
-  },
-  img: {
-    width: '30%'
-  },
-  content: {
-    width: '70%'
-  },
-  title: {
-    textAlign: 'center',
-    fontSize: '16px'
-  },
-  recipeInformationContent: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  recipeInformation: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center'
-  }
-}))
+import styles from './../styles/CardRecipe.module.css'
 
 export default function CardRecipe() {
-  const classes = useStyles()
-
   return (
-    <Card variant='elevation' className={classes.root}>
-      <CardMedia
-        className={classes.img}
-        image='/img/teste.jpg'
-        title='Imagem da receita'
-      />
-      
-      <CardContent className={classes.content} >
-        <Typography className={classes.title} component='h5' variant='h5'>Titulo da receita</Typography>
-        
-        <div className={classes.recipeInformationContent}>
-          <div className={classes.recipeInformation}>
-            <Typography variant="subtitle1" color="textSecondary" style={{ marginRight: '5px' }}>serve 4 porções</Typography>
-            <RoomServiceIcon fontSize='small' />
+    <button className={styles.cardContainer} >
+      <div className={styles.cardImgContainer}>
+        <img 
+          src="/img/teste.jpg" 
+          alt="Teste de imagem de receita"
+          className={styles.cardImg}
+        />
+      </div>
+
+      <div className={styles.informationContainer} >
+        <h5 className={styles.recipeTitle} >Titulo da receita</h5>
+
+        <div className={styles.recipeInformationContainer}>
+          <div className={styles.recipeSubtitleContainer}>
+            <RoomServiceIcon fontSize='small' color='action' />
+            <p className={styles.recipeSubtitle}>Serve x porções</p>
           </div>
 
-          <div className={classes.recipeInformation}>
-            <Typography variant="subtitle1" color="textSecondary">30 min</Typography>
-            <TimerIcon fontSize='small' />
+          <div className={styles.recipeSubtitleContainer}>
+            <TimerIcon fontSize='small' color='action'/>
+            <p className={styles.recipeSubtitle}>40 min</p>
           </div>
         </div>
-      </CardContent>
-    </Card>
-  );
+      </div>
+
+      <ArrowForwardIosIcon fontSize='small' color='action' className={styles.teste}/>
+    </button>
+  )
 }

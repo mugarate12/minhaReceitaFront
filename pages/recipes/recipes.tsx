@@ -20,6 +20,8 @@ export default function Recipes() {
 
       <div className={styles.mainContainer} >
         <CardRecipe />
+        <CardRecipe />
+        <CardRecipe />
       </div>
     </Layout>
   );
