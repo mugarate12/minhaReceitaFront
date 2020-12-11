@@ -1,8 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<!-- This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). -->
 
-## Getting Started
+# Minha Receita
 
-First, run the development server:
+"Minha receita" é uma aplicação web criada com [Next.JS](https://nextjs.org/) com a proposta de proporcionar uma experiência culinária a pessoas fora desse campo profissional. Você poderaá registar receitas, alterar e consultar suas próprias criações, além de ter um perfil no serviço e possibilidade de compartilhar suas criações com outras pessoas.
+
+Você pode visitar o site em [Minha Receita](http://minha-receita.vercel.app/)
+
+## Começando
+
+### Requerimentos
+- [Node.JS](https://nodejs.org/en/)
+
+### Instalação
+
+Na raiz deste projeto, execute o seguinte comando pra que sejam instaladas todas as dependências necessárias:
+
+```bash
+npm i
+# or
+yarn
+```
+
+### Ambiente
+
+Você pode rodar o ambiente de desenvolvimento utilizando o seguinte comando na pasta raiz deste projeto:
 
 ```bash
 npm run dev
@@ -10,21 +31,21 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) E veja o resultado.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Projeto atual
 
-## Learn More
+<!-- - Home Screen: You can see your current projects, your current goals, and others:
+<img src="/images/screens-github/home-dark.jpg" height=450> -->
 
-To learn more about Next.js, take a look at the following resources:
+## Checklist
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [x] Página Inicial
+- [x] Página de Login
+- [x] Página de cadastro
+- [x] Página de recuperação de senha
+- [ ] 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Obrigado por ver até aqui
+- [Linkedin](https://www.linkedin.com/in/mateus-cardoso-dos-santos-19a68a181/)
+- [Github](https://github.com/mugarate12)
