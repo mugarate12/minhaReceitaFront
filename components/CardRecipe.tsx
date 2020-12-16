@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router'
+
 import RoomServiceIcon from '@material-ui/icons/RoomService'
 import TimerIcon from '@material-ui/icons/Timer'
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
@@ -5,8 +7,10 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
 import styles from './../styles/CardRecipe.module.css'
 
 export default function CardRecipe() {
+  const router = useRouter()
+
   return (
-    <button className={styles.cardContainer} >
+    <button className={styles.cardContainer} onClick={() => router.push('/recipes/1')}>
       <div className={styles.cardImgContainer}>
         <img 
           src="/img/teste.jpg" 
