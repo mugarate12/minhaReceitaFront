@@ -4,8 +4,8 @@ import TextField from '@material-ui/core/TextField'
 type Props = {
   label: string;
   type?: string;
-  state: string;
-  setState: Dispatch<SetStateAction<string>>;
+  state: string | number;
+  setState: Dispatch<SetStateAction<any>>
   width?: string;
   marginLeft?: string;
 }
