@@ -44,7 +44,9 @@ Abra [http://localhost:3000](http://localhost:3000) E veja o resultado.
 - [x] Página de Login
 - [x] Página de cadastro
 - [x] Página de recuperação de senha
-- [ ] 
+- [x] Página de criação de receita
+- [x] Página de exibição de feed de receitas cadastradas (design apenas mobile) 
+- [x] Página de exibição da receita escolhida (design apenas mobile) 
 
 ## Obrigado por ver até aqui
 - [Linkedin](https://www.linkedin.com/in/mateus-cardoso-dos-santos-19a68a181/)
