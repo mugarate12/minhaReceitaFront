@@ -1,68 +1,47 @@
 .cardContainer {
   /* min-width: 250px; */
   
-  height: 100px;
-  width: 300px;
+  height: 200px;
+  width: 150px;
 
   display: flex;
+  flex-direction: column;
 
   border-radius: 20px;
   border-color: #cfa298;
   border-style: solid;
   border-width: 2px;
 
+  margin-top: 50px;
   margin-bottom: 10px;
 
   box-shadow: 1px 1px 1px 1px rgba(196, 149, 139, 0.5);
   background-color: #e9bcb2;
-
-  cursor: pointer;
-}
-
-.cardContainer:active {
-  background-color: #c5968b;
-  transition: 1s;
-  opacity: 1;
-  padding: 1px;
-  
-  border-width: 1px;
-  border-color: transparent;
-  border-style: solid;
-}
-
-.cardContainer:hover {
-  opacity: 0.8;
-  transition: 0.8s;
-}
-
-.cardContainer:focus {
-  outline: 0;
 }
 
 .cardImgContainer {
-  width: 20%;
-  height: 100%;
+  width: 100%;
 
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
 }
 
 .cardImg {
-  height: 80px;
-  width: 80px;
+  height: 100px;
+  width: 100px;
+
+  margin-top: -20px;
 
   border-radius: 50%;
-  margin-right: 40px;
 }
 
-.informationContainer {
-  height: 100%;
-  width: 75%;
+.recipeTitleContainer {
+  width: 100%;
 
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .recipeTitle {
@@ -70,15 +49,11 @@
   /* font-size: 1rem; */
   font-weight: bold;
   font-family: 'Caveat', cursive;
+  text-align: center;
   
   margin: 0;
   margin-top: 10px;
   margin-bottom: 10px;
-}
-
-.recipeInformationContainer {
-  display: flex;
-  flex-direction: column;
 }
 
 .recipeSubtitleContainer {
@@ -97,6 +72,19 @@
   font-size: 18px;
   font-weight: 500;
   font-family: 'Caveat', cursive;
+}
+
+.buttonContainer {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.buttonContainer:hover {
+  opacity: 0.8;
+  transition: 0.8s;
 }
 
 .teste {
