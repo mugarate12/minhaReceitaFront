@@ -8,10 +8,10 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 import styles from './../styles/CardRecipe.module.css'
 
 type Props = {
-  urlImg: '/img/teste.jpg';
-  recipeTitle: 'Titulo da receita';
-  numberOfPortions: 'Serve x porções';
-  time: '40min';
+  urlImg: string;
+  recipeTitle: string;
+  numberOfPortions: string;
+  time: string;
 }
 
 export default function CardRecipe({ urlImg, recipeTitle, numberOfPortions, time}: Props) {
@@ -45,7 +45,8 @@ export default function CardRecipe({ urlImg, recipeTitle, numberOfPortions, time
         <IconButton style={{
           padding: '5px', 
           backgroundColor: '#FDDADA', 
-          borderRadius: '10px'
+          borderRadius: '10px',
+          boxShadow: '1px 1px 1px 1px rgba(196, 149, 139, 0.5)'
           }} 
           aria-label='recipe page'
           onClick={() => router.push('/recipes/1')}
