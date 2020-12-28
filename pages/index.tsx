@@ -54,7 +54,7 @@ export default function Home() {
       <div className={styles.subContentContainer}>
         <div className={styles.subContentTextContainer}>
           <h2 className={styles.subtitle}>suas receitas com lugar pra estar e te esperar</h2>
-          <p className={styles.subContentText}>guarde, edite e reveja suas receitas de forma prática e rápida, além de prazerosa</p>
+          <p className={styles.subContentText}>guarde, edite e reveja suas receitas de forma prática, rápida e prazerosa</p>
         </div>
 
         <div className={styles.cardsContainer}>
@@ -63,6 +63,7 @@ export default function Home() {
             recipeTitle='Pizza de calabresa'
             time='1 hora'
             urlImg='/img/pizza.jpg'
+            onClick={() => {}}
           />
 
           <CardRecipe
@@ -70,6 +71,7 @@ export default function Home() {
             recipeTitle='macarrão ??'
             time='40 min'
             urlImg='/img/macarrao.jpg'
+            onClick={() => {}}
           />
         </div>
       </div>

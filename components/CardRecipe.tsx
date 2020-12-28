@@ -12,9 +12,10 @@ type Props = {
   recipeTitle: string;
   numberOfPortions: string;
   time: string;
+  onClick?: Function;
 }
 
-export default function CardRecipe({ urlImg, recipeTitle, numberOfPortions, time}: Props) {
+export default function CardRecipe({ urlImg, recipeTitle, numberOfPortions, time, onClick}: Props) {
   const router = useRouter()
 
   return (
@@ -49,36 +50,11 @@ export default function CardRecipe({ urlImg, recipeTitle, numberOfPortions, time
           boxShadow: '1px 1px 1px 1px rgba(196, 149, 139, 0.5)'
           }} 
           aria-label='recipe page'
-          onClick={() => router.push('/recipes/1')}
+          onClick={!!onClick ? () => onClick() : () => router.push('/recipes/1')}
           >
           <ArrowForwardIcon />
         </IconButton>
       </div>
-      {/* <div className={styles.cardImgContainer}>
-        <img 
-          src={urlImg} 
-          alt="Teste de imagem de receita"
-          className={styles.cardImg}
-        />
-      </div>
-
-      <div className={styles.informationContainer} >
-        <h5 className={styles.recipeTitle} >{recipeTitle}</h5>
-
-        <div className={styles.recipeInformationContainer}>
-          <div className={styles.recipeSubtitleContainer}>
-            <RoomServiceIcon fontSize='small' color='action' />
-            <p className={styles.recipeSubtitle}>{numberOfPortions}</p>
-          </div>
-
-          <div className={styles.recipeSubtitleContainer}>
-            <TimerIcon fontSize='small' color='action'/>
-            <p className={styles.recipeSubtitle}>{time}</p>
-          </div>
-        </div>
-      </div>
-
-      <ArrowForwardIosIcon fontSize='small' color='action' className={styles.teste}/> */}
     </div>
   )
 }
