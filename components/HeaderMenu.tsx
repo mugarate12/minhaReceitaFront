@@ -53,6 +53,8 @@ export default function HeaderMenu() {
           
           <ListItemText>Ver receitas</ListItemText>
         </ListItem>
+
+        <Divider />
       </>
     )
   }

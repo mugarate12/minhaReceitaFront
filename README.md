@@ -45,8 +45,34 @@ Abra [http://localhost:3000](http://localhost:3000) E veja o resultado.
 - [x] Página de cadastro
 - [x] Página de recuperação de senha
 - [x] Página de criação de receita
+- [x] Página de criação de uma receita (design apenas mobile)
 - [x] Página de exibição de feed de receitas cadastradas (design apenas mobile) 
-- [x] Página de exibição da receita escolhida (design apenas mobile) 
+- [x] Página de exibição da receita escolhida (design apenas mobile)
+- [ ] Página pra modificação de informações de uma receita registrada
+- [x] Side Menu
+- [ ] Página de exibição do usuário
+- [ ] Página de edição das informações do usuário
+
+## Projeto atual
+- Página de inicial pra apresentação
+
+<img src="./docs/img/HomePage.png" height=450>
+
+- Páginas de criação de um usuário, inscrição e caso o usuário perca a senha, uma página pra requisitar que uma nova senha seja enviada pelo email
+
+<img src="./docs/img/LoginPage.png" height=450>
+<img src="./docs/img/RegisterPage.png" height=450>
+<img src="./docs/img/RequestPassword.png" height=450>
+
+- Páginas pra criar, ver todas as receitas registradas e ver todas as informações da receita escolhida
+
+<img src="./docs/img/RegisterRecipePage.png" height=450>
+<img src="./docs/img/RecipesPage.png" height=450>
+<img src="./docs/img/RecipePage.png" height=450>
+
+- Side menu com as opções da aplicação
+
+<img src="./docs/img/SideMenu.png" height=450>
 
 ## Obrigado por ver até aqui
 - [Linkedin](https://www.linkedin.com/in/mateus-cardoso-dos-santos-19a68a181/)
