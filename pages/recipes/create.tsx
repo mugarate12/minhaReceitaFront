@@ -10,10 +10,11 @@ import Header from './../../components/Header'
 import PageDescription from './../../components/PageDescription'
 import Input from './../../components/Input'
 import Button from './../../components/Button'
-
 import Figure from './../../components/figure'
 
 import styles from './../../styles/CreateRecipe.module.css'
+
+import api from './../../config/api'
 
 interface ingredientsInterface {
   name: string,
@@ -29,8 +30,33 @@ export default function CreateRecipe() {
   
   const [ingredientName, setIngredientName] = useState<string>('')
   const [measure, setMeasure] = useState<string>('')
-
   const [ingredients, setIngredients] = useState<ingredientsInterface[]>([])
+
+  async function createRecipeInAPI() {
+    const isNotEmptyFields = !!title && !!time && !!number_of_portions && !!preparation_mode && !!observations
+    const token = sessionStorage.getItem('token')
+
+    if (isNotEmptyFields) {
+      await api.post('/recipes', {
+        title,
+        time,
+        number_of_portions,
+        preparation_mode,
+        observations,
+        ingredients
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then(response => {
+          alert('Receita criada com sucesso!')
+        })
+        .catch(error => {
+          alert('informações incorretas, verifique se todos os campos estão preenchidos corretamente.')
+        })
+    }
+  }
 
   function createIngredient() {
     const isNotEmpty = !!ingredientName && !!measure
@@ -175,6 +201,7 @@ export default function CreateRecipe() {
           backgroundColor='#d49898'
           margin={{ marginTop: '30px', marginBottom: '60px' }}
           width='260px'
+          // onclick={() => createRecipeInAPI()}
         >
           Registrar
         </Button>

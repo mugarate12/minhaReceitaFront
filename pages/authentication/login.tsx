@@ -32,6 +32,7 @@ export default function Login() {
     //     .then(response => {
     //       // aqui vai ser local storage mesmo
     //       sessionStorage.setItem('token', response.data.token)
+    //       router.push('/recipes/recipes')
     //     })
     //     .catch(error => {
     //       const isCelebrateError = error.response.status === 400

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router';
 
 import styles from './../../styles/Register.module.css'
 import Layout from './../../components/Layout'
@@ -12,6 +13,8 @@ import CustomButton from './../../components/Button'
 import api from './../../config/api'
 
 export default function Register() {
+  const router = useRouter()
+
   const [name, setName] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
@@ -31,7 +34,8 @@ export default function Register() {
         password
       })
         .then(response => {
-          console.log(response.data)
+          alert('Conta criada com sucesso!')
+          router.push('/recipes/recipes')
         })
         .catch(error => {
           const isCelebrateError = error.response.status === 400

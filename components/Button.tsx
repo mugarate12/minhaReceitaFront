@@ -8,7 +8,7 @@ type Props = {
   textColor?: string,
   backgroundColor?: string,
   children?: any,
-  onclick?: () => void,
+  onclick?: Function,
   type?: "button" | "submit" | "reset",
   width?: string,
   margin?: {
@@ -38,7 +38,7 @@ export default function CustomButton({ variant, size, colorMaterialUI, textColor
         backgroundColor: !!backgroundColor ? backgroundColor : undefined,
         width: width
       }}
-      onClick={onclick}
+      onClick={(e) => onclick(e)}
       >
       { children }
     </Button>
