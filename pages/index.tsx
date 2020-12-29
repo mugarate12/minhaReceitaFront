@@ -33,7 +33,7 @@ export default function Home() {
           
           <div className={styles.actionButtonsContainer}>
             <CustomButton
-              backgroundColor="#FDDADA"
+              backgroundColor="#d49898"
               onclick={() => router.push('/authentication/login')}
               margin={{ marginRight: '10px' }}
             >

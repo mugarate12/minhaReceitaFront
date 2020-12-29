@@ -59,10 +59,10 @@ export default function Recipe() {
 
         <h5 className={styles.title}>Ingredientes</h5>
 
-        <ul>
-          <li>Açucar</li>
-          <li>Tempero</li>
-          <li>E tudo que há de bom</li>
+        <ul className={styles.recipeUl}>
+          <li className={styles.recipeLi}>Açucar</li>
+          <li className={styles.recipeLi}>Tempero</li>
+          <li className={styles.recipeLi}>E tudo que há de bom</li>
         </ul>
 
         <h5 className={styles.title}>Modo de preparo</h5>

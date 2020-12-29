@@ -83,6 +83,17 @@
   margin-right: 30px;
 }
 
+.recipeUl {
+  padding-left: 30px;
+}
+
+.recipeLi {
+  list-style-type: none;
+
+  font-size: 18px;
+  font-family: 'Satisfy', cursive;
+}
+
 @media(min-width: 430px) {
   .recipeInformation {
     width: 400px;
