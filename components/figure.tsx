@@ -22,32 +22,62 @@ export default function Figure({ listOfStates }: Props) {
   function moveSpoon() {
     const inputsLenght = lenghtOfStates()
 
-    let move = initialPosition + (moveSpoonPixels * inputsLenght)
+    let move
     let spoonPosition = marginBottomSpoonInitialPosition
-    
-    const initialMove = move <= finalPosition
-    const moveToLeft = move > finalPosition && Number(String(move)[0]) % 2 === 1
-    const moveToRight = move > finalPosition && Number(String(move)[0]) % 2 === 0
 
-    if (initialMove) {
-      move = initialPosition + (moveSpoonPixels * inputsLenght)
-    } else if (moveToLeft) {
-      const countZero = String(move).length - 1
-      let count = String(move)[0]
-      for (let index = 0; index < countZero; index++) {
-        count += '0'
-      }
+    const movimentOrientation = inputsLenght / 10
+    const integerNumber = String(movimentOrientation).split('.')[0]
+    const moveleft =  Number(integerNumber) % 2 === 1
+    const moveright =  Number(integerNumber) % 2 === 0
 
-      move = finalPosition - (move - Number(count))
-    } else if (moveToRight) {
-      const countZero = String(move).length - 1
-      let count = String(move)[0]
-      for (let index = 0; index < countZero; index++) {
-        count += '0'
-      }
+    // console.log(inputsLenght)
+    // console.log(inputsLenght / 10)
 
-      move = move - Number(count)
+    // console.log('inputs', inputsLenght)
+    // console.log('l', moveleft)
+    // console.log('r', moveright)
+
+    if (moveleft) {
+      const numberInText = String(inputsLenght)
+      const numberUnit = Number(numberInText[numberInText.length - 1])
+
+      // console.log(finalPosition - moveSpoonPixels * numberUnit)
+      move = finalPosition - moveSpoonPixels * numberUnit
+    } else if (moveright) {
+      const numberInText = String(inputsLenght)
+      const numberUnit = Number(numberInText[numberInText.length - 1])
+
+      // console.log(moveSpoonPixels * numberUnit)
+      move = moveSpoonPixels * numberUnit
     }
+
+    // console.log(inputsLenght * moveSpoonPixels)
+    // console.log(inputsLenght)
+    // console.log(inputsLenght * moveSpoonPixels - (finalPosition ))
+    
+    // const initialMove = move <= finalPosition
+    // const moveToLeft = move > finalPosition && Number(String(move)[0]) % 2 === 1
+    // const moveToRight = move > finalPosition && Number(String(move)[0]) % 2 === 0
+
+    // if (initialMove) {
+    //   move = initialPosition + (moveSpoonPixels * inputsLenght)
+    // } else if (moveToLeft) {
+    //   const countZero = String(move).length - 1
+    //   let count = String(move)[0]
+    //   for (let index = 0; index < countZero; index++) {
+    //     count += '0'
+    //   }
+
+    //   move = finalPosition - (move - Number(count))
+    // } else if (moveToRight) {
+    //   const countZero = String(move).length - 1
+    //   let count = String(move)[0]
+    //   for (let index = 0; index < countZero; index++) {
+    //     count += '0'
+    //   }
+
+    //   move = move - Number(count)
+    // }
 
     if (move > 20 && move <= 40) {
       spoonPosition -= 2
@@ -60,7 +90,7 @@ export default function Figure({ listOfStates }: Props) {
     }
 
     return {
-      marginLeft: move + 10,
+      marginLeft: move,
       marginBottom: spoonPosition
     }
   }
@@ -69,7 +99,7 @@ export default function Figure({ listOfStates }: Props) {
     let spoonCableHeight = 60
     const inputsLenght = lenghtOfStates()
 
-    const moveToLeft = initialPosition + (moveSpoonPixels * inputsLenght) > finalPosition && Number(String(initialPosition + (moveSpoonPixels * inputsLenght))[0]) % 2 === 1
+    const moveToLeft =  Number(String(inputsLenght / 10).split('.')[0]) % 2 === 1
     if (moveToLeft) {
       spoonCableHeight -= 5
     } 
@@ -83,7 +113,7 @@ export default function Figure({ listOfStates }: Props) {
     let spoonBaseHeight = 40
     const inputsLenght = lenghtOfStates()
 
-    const moveToLeft = initialPosition + (moveSpoonPixels * inputsLenght) > finalPosition && Number(String(initialPosition + (moveSpoonPixels * inputsLenght))[0]) % 2 === 1
+    const moveToLeft =  Number(String(inputsLenght / 10).split('.')[0]) % 2 === 1
     if (moveToLeft) {
       spoonBaseHeight -= 5
     }
@@ -97,7 +127,7 @@ export default function Figure({ listOfStates }: Props) {
     let spoonBaseContentHeight = 30
     const inputsLenght = lenghtOfStates()
 
-    const moveToLeft = initialPosition + (moveSpoonPixels * inputsLenght) > finalPosition && Number(String(initialPosition + (moveSpoonPixels * inputsLenght))[0]) % 2 === 1
+    const moveToLeft =  Number(String(inputsLenght / 10).split('.')[0]) % 2 === 1
     if (moveToLeft) {
       spoonBaseContentHeight -= 5
     }
