@@ -12,6 +12,7 @@ import PageDescription from './../../components/PageDescription'
 import Input from './../../components/Input'
 import Button from './../../components/Button'
 import Figure from './../../components/figure'
+import CustomTextField from './../../components/TextField'
 
 import styles from './../../styles/CreateRecipe.module.css'
 
@@ -133,7 +134,8 @@ export default function CreateRecipe() {
             className={styles.inputFile}
             onChange={(event) => {
               const fileList = event.target.files
-              console.log(fileList[0])
+              const file = fileList[0]
+              console.log(file)
             }}
           />
           <InsertDriveFileIcon 
@@ -201,7 +203,7 @@ export default function CreateRecipe() {
           </IconButton>
         </div>
 
-        <TextField
+        {/* <TextField
           variant='outlined'
           label='Modo de preparo'
           multiline={true}
@@ -209,9 +211,16 @@ export default function CreateRecipe() {
           style={{width: '260px', marginBottom: '10px'}}
           value={preparation_mode}
           onChange={(e) => setPreparation_mode(e.target.value)}
+        /> */}
+        <CustomTextField
+          label='Modo de preparo'
+          state={preparation_mode}
+          setState={setPreparation_mode}
+          width='260px'
+          marginBottom='10px'
         />
 
-        <TextField
+        {/* <TextField
           variant='outlined'
           label='Observações'
           multiline={true}
@@ -219,6 +228,12 @@ export default function CreateRecipe() {
           style={{width: '260px'}}
           value={observations}
           onChange={(e) => setObservations(e.target.value)}
+        /> */}
+        <CustomTextField
+          label='Observações'
+          state={observations}
+          setState={setObservations}
+          width='260px'
         />
 
         <Button
