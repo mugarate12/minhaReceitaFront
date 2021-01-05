@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField'
 import IconButton from '@material-ui/core/IconButton'
 import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
+import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile'
 
 import Layout from './../../components/Layout'
 import Header from './../../components/Header'
@@ -123,6 +124,29 @@ export default function CreateRecipe() {
 
       <div className={styles.mainContainer}>
         <Figure  listOfStates={[title, preparation_mode, observations, ingredientName]}/>
+
+        <div className={styles.inputFileContainer}>
+          <input 
+            type="file" 
+            name="imagem da receita" 
+            id="imgFile"
+            className={styles.inputFile}
+            onChange={(event) => {
+              const fileList = event.target.files
+              console.log(fileList[0])
+            }}
+          />
+          <InsertDriveFileIcon 
+            color="disabled"
+            fontSize='large'
+            style={{
+              position: 'absolute',
+              marginTop: '-25px',
+              color: 'rgb(136, 128, 128)'
+            }}
+          />
+          <p className={styles.inputFileText}>selecione uma imagem pra receita</p>
+        </div>
 
         <Input state={title} setState={setTitle} label='titulo da receita' width='260px' />
         
