@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import Head from 'next/head'
-import TextField from '@material-ui/core/TextField'
 import IconButton from '@material-ui/core/IconButton'
 import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
-import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile'
+import FormData from 'form-data'
 
 import Layout from './../../components/Layout'
 import Header from './../../components/Header'
@@ -13,6 +12,7 @@ import Input from './../../components/Input'
 import Button from './../../components/Button'
 import Figure from './../../components/figure'
 import CustomTextField from './../../components/TextField'
+import InputFile from './../../components/InputFile'
 
 import styles from './../../styles/CreateRecipe.module.css'
 
@@ -29,6 +29,7 @@ export default function CreateRecipe() {
   const [number_of_portions, setNumber_of_portions] = useState<number>(0)
   const [preparation_mode, setPreparation_mode] = useState<string>('')
   const [observations, setObservations] = useState<string>('')
+  const [recipeImg, setRecipeImg] = useState<File>()
   
   const [ingredientName, setIngredientName] = useState<string>('')
   const [measure, setMeasure] = useState<string>('')
@@ -37,16 +38,17 @@ export default function CreateRecipe() {
   async function createRecipeInAPI() {
     const isNotEmptyFields = !!title && !!time && !!number_of_portions && !!preparation_mode && !!observations
     const token = sessionStorage.getItem('token')
+    const data = new FormData()
+
+    data.append('title', title)
+    data.append('time', time)
+    data.append('number_of_portions', number_of_portions)
+    data.append('preparation_mode', preparation_mode)
+    data.append('observations', observations)
+    data.append('img', recipeImg)
 
     if (isNotEmptyFields) {
-      await api.post('/recipes', {
-        title,
-        time,
-        number_of_portions,
-        preparation_mode,
-        observations,
-        ingredients
-      }, {
+      await api.post('/recipes', data, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -126,29 +128,9 @@ export default function CreateRecipe() {
       <div className={styles.mainContainer}>
         <Figure  listOfStates={[title, preparation_mode, observations, ingredientName]}/>
 
-        <div className={styles.inputFileContainer}>
-          <input 
-            type="file" 
-            name="imagem da receita" 
-            id="imgFile"
-            className={styles.inputFile}
-            onChange={(event) => {
-              const fileList = event.target.files
-              const file = fileList[0]
-              console.log(file)
-            }}
-          />
-          <InsertDriveFileIcon 
-            color="disabled"
-            fontSize='large'
-            style={{
-              position: 'absolute',
-              marginTop: '-25px',
-              color: 'rgb(136, 128, 128)'
-            }}
-          />
-          <p className={styles.inputFileText}>selecione uma imagem pra receita</p>
-        </div>
+        <InputFile
+          setState={setRecipeImg}
+        />
 
         <Input state={title} setState={setTitle} label='titulo da receita' width='260px' />
         
@@ -203,15 +185,6 @@ export default function CreateRecipe() {
           </IconButton>
         </div>
 
-        {/* <TextField
-          variant='outlined'
-          label='Modo de preparo'
-          multiline={true}
-          rowsMax={6}
-          style={{width: '260px', marginBottom: '10px'}}
-          value={preparation_mode}
-          onChange={(e) => setPreparation_mode(e.target.value)}
-        /> */}
         <CustomTextField
           label='Modo de preparo'
           state={preparation_mode}
@@ -220,15 +193,6 @@ export default function CreateRecipe() {
           marginBottom='10px'
         />
 
-        {/* <TextField
-          variant='outlined'
-          label='Observações'
-          multiline={true}
-          rowsMax={6}
-          style={{width: '260px'}}
-          value={observations}
-          onChange={(e) => setObservations(e.target.value)}
-        /> */}
         <CustomTextField
           label='Observações'
           state={observations}
