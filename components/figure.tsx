@@ -30,54 +30,17 @@ export default function Figure({ listOfStates }: Props) {
     const moveleft =  Number(integerNumber) % 2 === 1
     const moveright =  Number(integerNumber) % 2 === 0
 
-    // console.log(inputsLenght)
-    // console.log(inputsLenght / 10)
-
-    // console.log('inputs', inputsLenght)
-    // console.log('l', moveleft)
-    // console.log('r', moveright)
-
     if (moveleft) {
       const numberInText = String(inputsLenght)
       const numberUnit = Number(numberInText[numberInText.length - 1])
 
-      // console.log(finalPosition - moveSpoonPixels * numberUnit)
       move = finalPosition - moveSpoonPixels * numberUnit
     } else if (moveright) {
       const numberInText = String(inputsLenght)
       const numberUnit = Number(numberInText[numberInText.length - 1])
 
-      // console.log(moveSpoonPixels * numberUnit)
       move = moveSpoonPixels * numberUnit
     }
-
-    // console.log(inputsLenght * moveSpoonPixels)
-    // console.log(inputsLenght)
-    // console.log(inputsLenght * moveSpoonPixels - (finalPosition ))
-    
-    // const initialMove = move <= finalPosition
-    // const moveToLeft = move > finalPosition && Number(String(move)[0]) % 2 === 1
-    // const moveToRight = move > finalPosition && Number(String(move)[0]) % 2 === 0
-
-    // if (initialMove) {
-    //   move = initialPosition + (moveSpoonPixels * inputsLenght)
-    // } else if (moveToLeft) {
-    //   const countZero = String(move).length - 1
-    //   let count = String(move)[0]
-    //   for (let index = 0; index < countZero; index++) {
-    //     count += '0'
-    //   }
-
-    //   move = finalPosition - (move - Number(count))
-    // } else if (moveToRight) {
-    //   const countZero = String(move).length - 1
-    //   let count = String(move)[0]
-    //   for (let index = 0; index < countZero; index++) {
-    //     count += '0'
-    //   }
-
-    //   move = move - Number(count)
-    // }
 
     if (move > 20 && move <= 40) {
       spoonPosition -= 2
@@ -90,7 +53,7 @@ export default function Figure({ listOfStates }: Props) {
     }
 
     return {
-      marginLeft: move,
+      marginLeft: move + initialPosition,
       marginBottom: spoonPosition
     }
   }
