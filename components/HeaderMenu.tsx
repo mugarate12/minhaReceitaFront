@@ -14,6 +14,7 @@ import Divider from '@material-ui/core/Divider'
 
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast'
 import LocalDiningIcon from '@material-ui/icons/LocalDining'
+import PersonIcon from '@material-ui/icons/Person'
 
 
 export default function HeaderMenu() {
@@ -59,6 +60,23 @@ export default function HeaderMenu() {
     )
   }
 
+  function userOptions() {
+    return (
+      <>
+        <ListItem  
+          button={true}
+          onClick={() => router.push('/users/mypage')}
+        >
+          <ListItemIcon>
+            <PersonIcon/>
+          </ListItemIcon>
+          
+          <ListItemText>Meus dados</ListItemText>
+        </ListItem>
+      </>
+    )
+  }
+
   return (
     <IconButton aria-label='Menu' onClick={() => setOpenMenu(!openMenu)} >
       <MenuIcon fontSize='large' />
@@ -71,6 +89,7 @@ export default function HeaderMenu() {
       >
         <List>
           {recipesOptions()}
+          {userOptions()}
         </List>
       </Drawer>
     </IconButton>
