@@ -13,9 +13,6 @@ a {
 
 * {
   box-sizing: border-box;
-}
-
-div {
   --titleFont: 'Caveat', cursive;
   --contentFont: 'Satisfy', cursive;
 }

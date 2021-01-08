@@ -16,7 +16,6 @@ import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast'
 import LocalDiningIcon from '@material-ui/icons/LocalDining'
 import PersonIcon from '@material-ui/icons/Person'
 
-
 export default function HeaderMenu() {
   const small = useMediaQuery('(min-width:500px)')
   const router = useRouter()

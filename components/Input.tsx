@@ -21,7 +21,11 @@ export default function Input({ label, placeholder, type, disabled, state, setSt
       type={type}
       variant="outlined"
       size="small"
-      style={{marginBottom: '5px', width: width, marginLeft: marginLeft}}
+      style={{
+        marginBottom: '5px', 
+        width: width, 
+        marginLeft: marginLeft
+      }}
       value={state}
       onChange={(e) => setState(e.target.value)}
     />

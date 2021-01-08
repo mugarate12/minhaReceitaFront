@@ -36,7 +36,9 @@ export default function CustomButton({ variant, size, colorMaterialUI, textColor
         marginBottom: !!margin && !!margin.marginBottom ? margin.marginBottom : undefined,
         color: !!textColor ? textColor : undefined,
         backgroundColor: !!backgroundColor ? backgroundColor : undefined,
-        width: width
+        width: width,
+        fontFamily: 'Caveat',
+        fontStyle: 'cursive'
       }}
       onClick={(e) => onclick(e)}
       >
