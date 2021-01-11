@@ -60,7 +60,7 @@ export default function Recipe() {
             </div>
           </div>
 
-          <div>
+          <div className={styles.ingredientsContainer}>
             <h5 className={styles.title}>Ingredientes</h5>
 
             <ul className={styles.recipeUl}>
