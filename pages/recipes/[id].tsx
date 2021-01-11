@@ -28,42 +28,49 @@ export default function Recipe() {
       <div className={styles.mainContainer}>
         {/* <h1>{id}</h1> */}
 
-        <div className={styles.imgContainer}>
-          <Image 
-            src='/img/teste.jpg'
-            width={200}
-            height={200}
-            className={styles.img}
-          />
-        </div>
-
-        <h5 className={styles.title}>Titulo da Receita</h5>
-
-        <div className={styles.recipeInformation} >
-          <div className={styles.recipeInformationMicroCard}>
-            <div className={styles.iconContainer} >
-              <TimerIcon fontSize='large' color='disabled'/>
-            </div>
-
-            <p className={styles.recipeInformationText}>40 min</p>
+        <div className={styles.recipeMainInformationContainer}>
+          <div className={styles.imgContainer}>
+            <Image 
+              src='/img/teste.jpg'
+              width={200}
+              height={200}
+              className={styles.img}
+            />
           </div>
 
-          <div className={styles.recipeInformationMicroCard}>
-            <div className={styles.iconContainer} >
-              <RoomServiceIcon fontSize='large' color='disabled'/>
-            </div>
+          <div>
+            <h5 className={styles.title}>Titulo da Receita</h5>
 
-            <p className={styles.recipeInformationText}>serve x porções</p>
+            <div className={styles.recipeInformation} >
+              <div className={styles.recipeInformationMicroCard}>
+                <div className={styles.iconContainer} >
+                  <TimerIcon fontSize='large' color='disabled'/>
+                </div>
+
+                <p className={styles.recipeInformationText}>40 min</p>
+              </div>
+
+              <div className={styles.recipeInformationMicroCard}>
+                <div className={styles.iconContainer} >
+                  <RoomServiceIcon fontSize='large' color='disabled'/>
+                </div>
+
+                <p className={styles.recipeInformationText}>serve x porções</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h5 className={styles.title}>Ingredientes</h5>
+
+            <ul className={styles.recipeUl}>
+              <li className={styles.recipeLi}>Açucar</li>
+              <li className={styles.recipeLi}>Tempero</li>
+              <li className={styles.recipeLi}>E tudo que há de bom</li>
+            </ul>
           </div>
         </div>
 
-        <h5 className={styles.title}>Ingredientes</h5>
-
-        <ul className={styles.recipeUl}>
-          <li className={styles.recipeLi}>Açucar</li>
-          <li className={styles.recipeLi}>Tempero</li>
-          <li className={styles.recipeLi}>E tudo que há de bom</li>
-        </ul>
 
         <h5 className={styles.title}>Modo de preparo</h5>
 

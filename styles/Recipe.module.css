@@ -96,11 +96,36 @@
 
 @media(min-width: 430px) {
   .recipeInformation {
-    width: 400px;
     align-self: center;
+
+    margin-left: 20%;
+    margin-right: 20%;
   }
 
   .title{
     text-align: center;
+  }
+}
+
+@media (min-width: 650px) {
+  .recipeMainInformationContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .recipeInformation {
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+
+  .recipeUl {
+    text-align: center;
+  }
+}
+
+@media (min-width: 1000px) {
+  .recipeMainInformationContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
