@@ -27,7 +27,15 @@ export default function Input({ label, placeholder, type, disabled, state, setSt
         marginLeft: marginLeft
       }}
       value={state}
-      onChange={(e) => setState(e.target.value)}
+      onChange={(e) => {
+        if (type === 'number') {
+          if (Number(e.target.value) >= 0) {
+            setState(e.target.value)
+          }
+        } else {
+          setState(e.target.value)
+        }
+      }}
     />
   )
 }
