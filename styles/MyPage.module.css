@@ -34,6 +34,7 @@
 .TextApresentationTextTitle {
   font-family: var(--titleFont);
   font-size: 24px;
+  font-size: 1.5rem;
 
   margin-right: 10px;
   margin-bottom: 20px;
@@ -42,6 +43,7 @@
 .TextApresentationTextContent {
   font-family: var(--contentFont);
   font-size: 16px;
+  font-size: 1rem;
 
   margin-top: 0px;
 }
@@ -102,4 +104,47 @@
 
 .card:hover {
   opacity: 0.7;
+}
+
+@media (min-width: 750px) {
+  .mainContainer {
+    flex-direction: row;
+  }
+
+  .ApresentationContainer{
+    width: 50%;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .informationContainer {
+    width: 50%;
+  }
+
+  .ApresentationImgContainer {
+    margin-left: 0px;
+  }
+
+  .TextApresentationTextTitle {
+    font-size: 36px;
+    font-size: 2.25rem;
+  }
+
+  .TextApresentationTextContent {
+    font-size: 24px;
+    font-size: 1.5rem;
+  }
+
+  .informationTextTitle {
+    font-size: 36px;
+    font-size: 2.25rem;
+
+    margin-top: 0px;
+  }
+
+  .informationTextContent {
+    font-size: 24px;
+    font-size: 1.5rem;
+  }
 }
