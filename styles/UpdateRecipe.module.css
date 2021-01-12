@@ -1,8 +1,37 @@
 .mainContainer {
-  margin-top: 120px;
+  margin-top: 130px;
   margin-bottom: 20px;
 
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 15px;
+}
+
+.img {
+  border-radius: 50%;
+}
+
+@media (min-width: 500px) {
+  .updateFieldContainer {
+    display: flex;
+    flex-direction: row;
+    width: 85%;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (min-width: 800px) {
+  .updateFieldContainer {
+    width: 50%;
+  }
 }

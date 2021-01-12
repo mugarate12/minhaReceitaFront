@@ -15,6 +15,7 @@ import Divider from '@material-ui/core/Divider'
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast'
 import LocalDiningIcon from '@material-ui/icons/LocalDining'
 import PersonIcon from '@material-ui/icons/Person'
+import UpdateIcon from '@material-ui/icons/Update'
 
 import styles from './../styles/HeaderMenu.module.css'
 
@@ -61,7 +62,7 @@ export default function HeaderMenu() {
           onClick={() => router.push('/recipes/update')}
         >
           <ListItemIcon>
-            <LocalDiningIcon/>
+            <UpdateIcon/>
           </ListItemIcon>
           
           <ListItemText ><span className={styles.menuItemText}>Editar receita</span></ListItemText>

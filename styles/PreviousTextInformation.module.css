@@ -1,0 +1,17 @@
+.previousInformationText {
+  font-family: var(--titleFont);
+  font-size: 24px;
+  font-size: 1.5rem;
+  text-align: center;
+
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+
+@media (min-width: 500px) {
+  .previousInformationText {
+    text-align: start;
+    
+    margin-top: 15px;
+  }
+}
