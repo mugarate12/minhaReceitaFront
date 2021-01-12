@@ -31,7 +31,7 @@ export default function Recipes() {
   return (
     <Layout>
       <Head>
-        <title>Receitas</title>
+        <title>Suas Receitas</title>
       </Head>
 
       <Header renderMenu={true} />

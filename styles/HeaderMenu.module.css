@@ -1,0 +1,12 @@
+.menuItemText {
+  font-family: var(--titleFont);
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+@media (min-width: 500px) {
+  .menuItemText {
+    font-size: 20px;
+    font-size: 1.25rem;
+  }
+}

@@ -16,6 +16,8 @@ import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast'
 import LocalDiningIcon from '@material-ui/icons/LocalDining'
 import PersonIcon from '@material-ui/icons/Person'
 
+import styles from './../styles/HeaderMenu.module.css'
+
 export default function HeaderMenu() {
   const small = useMediaQuery('(min-width:500px)')
   const router = useRouter()
@@ -40,7 +42,7 @@ export default function HeaderMenu() {
             <FreeBreakfastIcon/>
           </ListItemIcon>
           
-          <ListItemText>Criar receita</ListItemText>
+          <ListItemText><span className={styles.menuItemText}>Criar Receita</span></ListItemText>
         </ListItem>
 
         <ListItem 
@@ -51,7 +53,7 @@ export default function HeaderMenu() {
             <LocalDiningIcon/>
           </ListItemIcon>
           
-          <ListItemText>Ver receitas</ListItemText>
+          <ListItemText ><span className={styles.menuItemText}>Ver receitas</span></ListItemText>
         </ListItem>
 
         <Divider />
@@ -70,7 +72,7 @@ export default function HeaderMenu() {
             <PersonIcon/>
           </ListItemIcon>
           
-          <ListItemText>Meus dados</ListItemText>
+          <ListItemText><span className={styles.menuItemText}>Meus Dados</span></ListItemText>
         </ListItem>
       </>
     )

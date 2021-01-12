@@ -21,6 +21,20 @@ export default function CustomTextField({ label, state, setState, width, marginB
         width: width,
         marginBottom: marginBottom
       }}
+      InputLabelProps={{
+        style: {
+          fontFamily: 'Caveat',
+          fontStyle: 'cursive',
+          fontSize: '20px'
+        }
+      }}
+      inputProps={{
+        style: {
+          fontFamily: 'Caveat',
+          fontStyle: 'cursive',
+          fontSize: '20px'
+        }
+      }}
       value={state}
       onChange={(e) => setState(e.target.value)}
     />

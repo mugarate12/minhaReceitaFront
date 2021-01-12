@@ -26,6 +26,20 @@ export default function Input({ label, placeholder, type, disabled, state, setSt
         width: width, 
         marginLeft: marginLeft
       }}
+      InputLabelProps={{
+        style: {
+          fontFamily: 'Caveat',
+          fontStyle: 'cursive',
+          fontSize: '20px'
+        }
+      }}
+      inputProps={{
+        style: {
+          fontFamily: 'Caveat',
+          fontStyle: 'cursive',
+          fontSize: '20px'
+        }
+      }}
       value={state}
       onChange={(e) => {
         if (type === 'number') {
