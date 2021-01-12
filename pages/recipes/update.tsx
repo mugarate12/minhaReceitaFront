@@ -9,6 +9,7 @@ import PageDescription from './../../components/PageDescription'
 import InputFile from './../../components/InputFile'
 import Input from './../../components/Input'
 import PreviousTextInformation from './../../components/PreviousTextInformation'
+import TextField from './../../components/TextField'
 
 import styles from './../../styles/UpdateRecipe.module.css'
 
@@ -59,6 +60,46 @@ export default function UpdateRecipe() {
             placeholder='Novo titulo'
             width='250px'
           />
+        </div>
+
+        <div className={styles.updateFieldContainer}>
+          <PreviousTextInformation
+            state={time > 0 ? 'valid' : ''}
+            textDescription='40 min'
+          />
+
+          <div className={styles.inputNumberContainer}>
+            <Input
+              label='tempo da receita'
+              state={time}
+              setState={setTime}
+              type='number'
+              placeholder='40, 50, 60?'
+              width='200px'
+            />
+
+            <p className={styles.inputNumberHelperText}>Min</p>
+          </div>
+        </div>
+
+        <div className={styles.updateFieldContainer}>
+          <PreviousTextInformation
+            state={number_of_portions > 0 ? 'valid' : ''}
+            textDescription='10 porções'
+          />
+
+          <div className={styles.inputNumberContainer}>
+            <Input
+              label='número de porções'
+              state={number_of_portions}
+              setState={setNumber_of_portions}
+              type='number'
+              placeholder='5, 8, 12?'
+              width='170px'
+            />
+
+            <p className={styles.inputNumberHelperText}>Porções</p>
+          </div>
         </div>
 
       </div>
