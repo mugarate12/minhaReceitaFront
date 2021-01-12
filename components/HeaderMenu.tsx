@@ -56,6 +56,17 @@ export default function HeaderMenu() {
           <ListItemText ><span className={styles.menuItemText}>Ver receitas</span></ListItemText>
         </ListItem>
 
+        <ListItem 
+          button={true}
+          onClick={() => router.push('/recipes/update')}
+        >
+          <ListItemIcon>
+            <LocalDiningIcon/>
+          </ListItemIcon>
+          
+          <ListItemText ><span className={styles.menuItemText}>Editar receita</span></ListItemText>
+        </ListItem>
+
         <Divider />
       </>
     )
