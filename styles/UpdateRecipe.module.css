@@ -34,13 +34,20 @@
   font-size: 1.5rem;
 }
 
+.updateFieldContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 15px;
+}
+
 @media (min-width: 500px) {
   .updateFieldContainer {
-    display: flex;
-    flex-direction: row;
     width: 85%;
-    justify-content: space-between;
-    align-items: center;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
