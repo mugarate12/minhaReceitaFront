@@ -10,11 +10,13 @@ import InputFile from './../../components/InputFile'
 import Input from './../../components/Input'
 import PreviousTextInformation from './../../components/PreviousTextInformation'
 import TextField from './../../components/TextField'
+import Button from './../../components/Button'
 
 import styles from './../../styles/UpdateRecipe.module.css'
 
 export default function UpdateRecipe() {
-  const [recipeImg, setRecipeImg] = useState<File>()
+  // const [recipeImg, setRecipeImg] = useState<File>()
+  const [recipeImg, setRecipeImg] =useState<string>('/img/teste.jpg')
   const [title, setTitle] = useState<string>('')
   const [time, setTime] = useState<number>(0)
   const [number_of_portions, setNumber_of_portions] = useState<number>(0)
@@ -36,7 +38,7 @@ export default function UpdateRecipe() {
           <div className={styles.imgContainer}>
             <Image
               className={styles.img}
-              src='/img/teste.jpg'
+              src={recipeImg}
               width={200}
               height={200}
               id='preview'
@@ -133,6 +135,14 @@ export default function UpdateRecipe() {
           />
         </div>
 
+
+        <Button
+          backgroundColor='#d49898'
+          width='250px'
+          margin= {{
+            marginTop: '15px'
+          }}
+        >Atualizar</Button>
       </div>
     </Layout>
   );

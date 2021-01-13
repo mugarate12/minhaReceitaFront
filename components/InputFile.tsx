@@ -21,8 +21,13 @@ export default function InputFile({ setState }: Props) {
         onChange={(event) => {
           const fileList = event.target.files
           const file = fileList[0]
-          setState(file)
-          setDisplayText(`sua foto foi carregada`)
+          
+          const reader = new FileReader()
+          reader.onload = (e) => {
+            setState(reader.result)
+            setDisplayText(`sua foto foi carregada`)
+          }
+          reader.readAsDataURL(file)
         }}
       />
       <InsertDriveFileIcon 
