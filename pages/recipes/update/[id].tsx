@@ -1,21 +1,24 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 import Head from 'next/head'
 import Image from 'next/image'
 
-import Layout from './../../components/Layout'
-import Header from './../../components/Header'
-import PageDescription from './../../components/PageDescription'
-import InputFile from './../../components/InputFile'
-import Input from './../../components/Input'
-import PreviousTextInformation from './../../components/PreviousTextInformation'
-import TextField from './../../components/TextField'
-import Button from './../../components/Button'
+import Layout from './../../../components/Layout'
+import Header from './../../../components/Header'
+import PageDescription from './../../../components/PageDescription'
+import InputFile from './../../../components/InputFile'
+import Input from './../../../components/Input'
+import PreviousTextInformation from './../../../components/PreviousTextInformation'
+import TextField from './../../../components/TextField'
+import Button from './../../../components/Button'
 
-import styles from './../../styles/UpdateRecipe.module.css'
+import styles from './../../../styles/UpdateRecipe.module.css'
 
 export default function UpdateRecipe() {
-  // const [recipeImg, setRecipeImg] = useState<File>()
+  const router = useRouter()
+  const { id } = router.query
+
   const [recipeImg, setRecipeImg] =useState<string>('/img/teste.jpg')
   const [title, setTitle] = useState<string>('')
   const [time, setTime] = useState<number>(0)

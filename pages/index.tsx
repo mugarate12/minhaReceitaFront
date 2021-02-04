@@ -58,7 +58,7 @@ export default function Home() {
         </div>
 
         <div className={styles.cardsContainer}>
-          <CardRecipe
+          {/* <CardRecipe
             numberOfPortions='oito fatias'
             recipeTitle='Pizza de calabresa'
             time='1 hora'
@@ -72,7 +72,7 @@ export default function Home() {
             time='40 min'
             urlImg='/img/macarrao.jpg'
             onClick={() => {}}
-          />
+          /> */}
         </div>
       </div>
     </Layout>

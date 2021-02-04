@@ -13,12 +13,14 @@ export default function Recipes() {
     const recipeTitle = 'Titulo da receita'
     const numberOfPortions = 'Serve x porções'
     const time = '40min'
+    const id = '1'
 
     const temporaryArray = [1, 2, 3, 4, 5, 6]
     return temporaryArray.map((value, index) => {
       return (
         <CardRecipe
           key={index}
+          id={id}
           urlImg={urlImg}
           recipeTitle={recipeTitle}
           numberOfPortions={numberOfPortions}

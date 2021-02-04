@@ -1,9 +1,16 @@
 import { useRouter } from 'next/router'
+import { makeStyles } from '@material-ui/core/styles'
+
 import IconButton from '@material-ui/core/IconButton'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
 
 import RoomServiceIcon from '@material-ui/icons/RoomService'
 import TimerIcon from '@material-ui/icons/Timer'
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import EditIcon from '@material-ui/icons/Edit'
+import ShareIcon from '@material-ui/icons/Share'
 
 import styles from './../styles/CardRecipe.module.css'
 
@@ -12,49 +19,80 @@ type Props = {
   recipeTitle: string;
   numberOfPortions: string;
   time: string;
+  id: string;
   onClick?: Function;
 }
 
-export default function CardRecipe({ urlImg, recipeTitle, numberOfPortions, time, onClick}: Props) {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 2fr',
+    height: '150px',
+    width: '250px'
+  },
+  details: {
+    backgroundColor: ' rgba(255, 191, 183, 0.6)'
+  },
+  content: {
+    marginLeft: '5px',
+    height: '100px'
+  },
+  cover: {
+
+  },
+  controls: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%'
+  }
+}))
+
+export default function CardRecipe({ id, urlImg, recipeTitle, numberOfPortions, time, onClick}: Props) {
+  const classes = useStyles()
   const router = useRouter()
 
   return (
-    <div className={styles.cardContainer}>
-      <div className={styles.cardImgContainer}>
-        <img 
-            src={urlImg} 
-            alt="Teste de imagem de receita"
-            className={styles.cardImg}
-          />
-      </div>
+    <Card className={classes.root}>
+      <CardMedia 
+        image={urlImg}
+        title='imagem da receita'
+      />
+      <div className={classes.details}>
+        <CardContent className={classes.content}>
+          <div className={styles.recipeTitleContainer}>
+            <h5 className={styles.recipeTitle} >{recipeTitle}</h5>
+          </div>
 
-      <div className={styles.recipeTitleContainer}>
-        <h5 className={styles.recipeTitle} >{recipeTitle}</h5>
-      </div>
+          <div className={styles.recipeSubtitleContainer}>
+            <RoomServiceIcon fontSize='small' color='action' />
+            <p className={styles.recipeSubtitle}>{numberOfPortions}</p>
+          </div>
+          
+          <div className={styles.recipeSubtitleContainer}>
+            <TimerIcon fontSize='small' color='action'/>
+            <p className={styles.recipeSubtitle}>{time}</p>
+          </div>
+        </CardContent>
 
-      <div className={styles.recipeSubtitleContainer}>
-        <RoomServiceIcon fontSize='small' color='action' />
-        <p className={styles.recipeSubtitle}>{numberOfPortions}</p>
-      </div>
-
-      <div className={styles.recipeSubtitleContainer}>
-        <TimerIcon fontSize='small' color='action'/>
-        <p className={styles.recipeSubtitle}>{time}</p>
-      </div>
-
-      <div className={styles.buttonContainer}>
-        <IconButton style={{
-          padding: '5px', 
-          backgroundColor: '#FDDADA', 
-          borderRadius: '10px',
-          boxShadow: '1px 1px 1px 1px rgba(196, 149, 139, 0.5)'
-          }} 
-          aria-label='recipe page'
-          onClick={!!onClick ? () => onClick() : () => router.push('/recipes/1')}
+        <div className={classes.controls}>
+          <IconButton
+            onClick={() => router.push(`/recipes/${id}`)}
           >
-          <ArrowForwardIcon />
-        </IconButton>
+            <VisibilityIcon />
+          </IconButton>
+
+          <IconButton
+            onClick={() => router.push(`/recipes/update/${id}`)}
+          >
+            <EditIcon />
+          </IconButton>
+          
+          <IconButton>
+            <ShareIcon />
+          </IconButton>
+        </div>
       </div>
-    </div>
+    </Card>
   )
 }

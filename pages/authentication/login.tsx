@@ -19,37 +19,35 @@ export default function Login() {
   const [password, setPassword] = useState<string>('')
 
   async function logUser() {
-    router.push('/recipes/recipes')
+    const emailNotEmpty = !!email
+    const passwordNotEmpty = !!password
 
-    // const emailNotEmpty = !!email
-    // const passwordNotEmpty = !!password
+    if (emailNotEmpty && passwordNotEmpty) {
+      await api.post('/session', {
+        email,
+        password
+      })
+        .then(response => {
+          // aqui vai ser local storage mesmo
+          sessionStorage.setItem('token', response.data.token)
+          router.push('/recipes/recipes')
+        })
+        .catch(error => {
+          const isCelebrateError = error.response.status === 400
+          const invalidInputError = error.response.status === 406
+          const isNotDatabaseError = error.response.data.error.message !== 'Database Error'
 
-    // if (emailNotEmpty && passwordNotEmpty) {
-    //   await api.post('/session', {
-    //     email,
-    //     password
-    //   })
-    //     .then(response => {
-    //       // aqui vai ser local storage mesmo
-    //       sessionStorage.setItem('token', response.data.token)
-    //       router.push('/recipes/recipes')
-    //     })
-    //     .catch(error => {
-    //       const isCelebrateError = error.response.status === 400
-    //       const invalidInputError = error.response.status === 406
-    //       const isNotDatabaseError = error.response.data.error.message !== 'Database Error'
-
-    //       if (isCelebrateError) {
-    //         alert('Informações incorretas, por favor, verifique os campos!')
-    //       } else if (invalidInputError && isNotDatabaseError) {
-    //         alert('Dados incorretos, verifique a informação!')
-    //       } else {
-    //         alert('Ocorreu algum erro inesperado, verifique as informações ou tente mais tarde!')
-    //       }
-    //     })
-    // } else {
-    //   alert('Preencha todos os campos')
-    // }
+          if (isCelebrateError) {
+            alert('Informações incorretas, por favor, verifique os campos!')
+          } else if (invalidInputError && isNotDatabaseError) {
+            alert('Dados incorretos, verifique a informação!')
+          } else {
+            alert('Ocorreu algum erro inesperado, verifique as informações ou tente mais tarde!')
+          }
+        })
+    } else {
+      alert('Preencha todos os campos')
+    }
   }
 
   return (
@@ -99,7 +97,8 @@ export default function Login() {
           backgroundColor='#d49898'
           margin={{ marginTop: '15px' }}
           width='219px'
-          onclick={() => logUser()}
+          // onclick={() => logUser()}
+          onclick={() => router.push('/recipes/recipes')}
         >
           Entrar
         </CustomButton>
