@@ -17,6 +17,7 @@ export default function Register() {
 
   const [name, setName] = useState<string>('')
   const [email, setEmail] = useState<string>('')
+  const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [confirmPassword, setConfirmPassword] = useState<string>('')
 
@@ -25,17 +26,19 @@ export default function Register() {
 
     const nameNotEmpty = !!name
     const emailNotEmpty = !!email
+    const usernameNotEmpty = !!username
     const passwordNotEmptyAndSameToConfirm = !!password && !!confirmPassword && password === confirmPassword
 
-    if (nameNotEmpty && emailNotEmpty && passwordNotEmptyAndSameToConfirm) {
+    if (nameNotEmpty && emailNotEmpty && usernameNotEmpty && passwordNotEmptyAndSameToConfirm) {
       await api.post('/users', {
         name,
         email,
-        password
+        password,
+        username
       })
         .then(response => {
           alert('Conta criada com sucesso!')
-          router.push('/recipes/recipes')
+          router.push('/authentication/login')
         })
         .catch(error => {
           const isCelebrateError = error.response.status === 400
@@ -75,6 +78,7 @@ export default function Register() {
         <form className={styles.form}>
           <Input label='name' state={name} setState={setName} />
           <Input label='email' state={email} setState={setEmail} />
+          <Input label='username' state={username} setState={setUsername} />
           <div>
             <Input 
               label='senha' 
@@ -97,6 +101,7 @@ export default function Register() {
             backgroundColor='#d49898'
             margin={{marginTop: '15px'}}
             // onclick={(e) => handleRegister(e)}
+            onclick={() => router.push('/recipes/recipes')}
             type='submit'
           >
             Cadastrar

@@ -1,8 +1,5 @@
 import { useState } from 'react'
 import Head from 'next/head'
-import IconButton from '@material-ui/core/IconButton'
-import AddIcon from '@material-ui/icons/Add'
-import DeleteIcon from '@material-ui/icons/Delete'
 import FormData from 'form-data'
 
 import Layout from './../../components/Layout'
@@ -13,6 +10,10 @@ import Button from './../../components/Button'
 import Figure from './../../components/figure'
 import CustomTextField from './../../components/TextField'
 import InputFile from './../../components/InputFile'
+
+import IconButton from '@material-ui/core/IconButton'
+import AddIcon from '@material-ui/icons/Add'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 import styles from './../../styles/CreateRecipe.module.css'
 
@@ -39,6 +40,7 @@ export default function CreateRecipe() {
     const isNotEmptyFields = !!title && !!time && !!number_of_portions && !!preparation_mode && !!observations
     const token = sessionStorage.getItem('token')
     const data = new FormData()
+    const reader = new FileReader()
 
     data.append('title', title)
     data.append('time', time)
@@ -55,8 +57,10 @@ export default function CreateRecipe() {
       })
         .then(response => {
           alert('Receita criada com sucesso!')
+          
         })
-        .catch(error => {
+        .catch((error: Error) => {
+          console.error(error)
           alert('informações incorretas, verifique se todos os campos estão preenchidos corretamente.')
         })
     }
@@ -130,6 +134,7 @@ export default function CreateRecipe() {
 
         <InputFile
           setState={setRecipeImg}
+          defaultDisplayText='selecione uma imagem pra receita'
         />
 
         <Input state={title} setState={setTitle} label='titulo da receita' width='260px' />
@@ -205,6 +210,7 @@ export default function CreateRecipe() {
           margin={{ marginTop: '30px', marginBottom: '60px' }}
           width='260px'
           // onclick={() => createRecipeInAPI()}
+          onclick={() => alert('ok')}
         >
           Registrar
         </Button>

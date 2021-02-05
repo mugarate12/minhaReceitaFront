@@ -5,11 +5,12 @@ import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile'
 import styles from './../styles/InputFile.module.css'
 
 type Props = {
-  setState: Dispatch<SetStateAction<any>>
+  setState: Dispatch<SetStateAction<any>>,
+  defaultDisplayText: string
 }
 
-export default function InputFile({ setState }: Props) {
-  const [displayText, setDisplayText] = useState<string>('selecione uma imagem pra receita')
+export default function InputFile({ setState, defaultDisplayText }: Props) {
+  const [displayText, setDisplayText] = useState<string>(defaultDisplayText)
   
   return (
     <div className={styles.inputFileContainer}>
@@ -21,13 +22,9 @@ export default function InputFile({ setState }: Props) {
         onChange={(event) => {
           const fileList = event.target.files
           const file = fileList[0]
-          
-          const reader = new FileReader()
-          reader.onload = (e) => {
-            setState(reader.result)
-            setDisplayText(`sua foto foi carregada`)
-          }
-          reader.readAsDataURL(file)
+
+          setState(file)
+          setDisplayText('foto carregada!')
         }}
       />
       <InsertDriveFileIcon 

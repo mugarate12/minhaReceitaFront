@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 import Head from 'next/head'
-import Image from 'next/image'
 
 import Layout from './../../../components/Layout'
 import Header from './../../../components/Header'
@@ -12,6 +11,7 @@ import Input from './../../../components/Input'
 import PreviousTextInformation from './../../../components/PreviousTextInformation'
 import TextField from './../../../components/TextField'
 import Button from './../../../components/Button'
+import Image from './../../../components/Image'
 
 import styles from './../../../styles/UpdateRecipe.module.css'
 
@@ -19,7 +19,7 @@ export default function UpdateRecipe() {
   const router = useRouter()
   const { id } = router.query
 
-  const [recipeImg, setRecipeImg] =useState<string>('/img/teste.jpg')
+  const [recipeImg, setRecipeImg] =useState<File>()
   const [title, setTitle] = useState<string>('')
   const [time, setTime] = useState<number>(0)
   const [number_of_portions, setNumber_of_portions] = useState<number>(0)
@@ -40,16 +40,14 @@ export default function UpdateRecipe() {
         <div className={styles.updateFieldContainer}>
           <div className={styles.imgContainer}>
             <Image
-              className={styles.img}
-              src={recipeImg}
-              width={200}
-              height={200}
-              id='preview'
+              src={!!recipeImg ? URL.createObjectURL(recipeImg) : '/img/teste.jpg'}
+              alt='imagem da receita'
             />
           </div>
 
           <InputFile
             setState={setRecipeImg}
+            defaultDisplayText='selecione uma imagem pra receita'
           />
         </div>
 

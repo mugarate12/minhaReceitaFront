@@ -68,13 +68,14 @@
   margin-left: 40px;
 
   height: 100px;
-  width: 100px;
+  width: 120px;
 
   cursor: pointer;
 
   border-radius: 10px;
 
   background-color: #e9bcb2;
+  box-shadow: 1px 1px black;
 }
 
 .cardsContainer {
