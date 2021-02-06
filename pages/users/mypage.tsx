@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import Layout from './../../components/Layout'
 import Header from './../../components/Header'
 import PageDescription from './../../components/PageDescription'
+import Card from './../../components/CardMyPage'
 
 import ReceiptIcon from '@material-ui/icons/Receipt'
 import FastfoodIcon from '@material-ui/icons/Fastfood'
@@ -51,9 +52,9 @@ export default function MyPage() {
       })
   }
 
-  // useEffect(() => {
-  //   getUSerInformation()
-  // }, [])
+  useEffect(() => {
+    getUSerInformation()
+  }, [])
 
   return (
     <Layout>
@@ -89,23 +90,36 @@ export default function MyPage() {
         
 
           <div className={styles.cardsContainer}>
-            <div className={styles.card}>
+            <Card text='X receitas'>
+              <ReceiptIcon fontSize='large' color='action'/>
+            </Card>
+            {/* <div className={styles.card}>
               <div className={styles.cardIconContainer}>
                 <ReceiptIcon fontSize='large' color='action'/>
               </div>
 
               <p className={styles.cardText}>X receitas</p>
-            </div>
+            </div> */}
 
-            <div className={styles.card}>
+            <Card text='Ver receitas'>
+              <EditIcon fontSize='large' color='action'/>
+            </Card>
+            {/* <div className={styles.card}>
               <div className={styles.cardIconContainer}>
                 <FastfoodIcon fontSize='large' color='action'/>
               </div>
 
               <p className={styles.cardText}>Ver receitas</p>
-            </div>
+            </div> */}
             
-            <div 
+
+            <Card 
+              text='Editar perfil'
+              onclick={() => router.push('/users/updateMyUser')}
+            >
+              <EditIcon fontSize='large' color='action'/>
+            </Card>
+            {/* <div 
               className={styles.card}
               onClick={() => router.push('/users/updateMyUser')}
             >
@@ -114,7 +128,7 @@ export default function MyPage() {
               </div>
 
               <p className={styles.cardText}>Editar perfil</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -38,9 +38,9 @@ export default function Recipes() {
       })
   }
 
-  // useEffect(() => {
-  //   getRecipesFromUser()
-  // }, [])
+  useEffect(() => {
+    getRecipesFromUser()
+  }, [])
 
 
   function renderCardRecipes() {
@@ -50,32 +50,32 @@ export default function Recipes() {
     const time = '40min'
     const id = '1'
 
-    // return recipes.map((recipe, index) => {
-    //   return (
-    //     <CardRecipe 
-    //       key={recipe.id}
-    //       id={recipe.id}
-    //       urlImg={!!recipe.imgURL ? recipe.imgURL : '/img/teste.jpg'}
-    //       recipeTitle={recipe.title}
-    //       numberOfPortions={recipe.number_of_portions}
-    //       time={recipe.time}
-    //     />
-    //   )
-    // })
-
-    const temporaryArray = [1, 2, 3, 4, 5, 6]
-    return temporaryArray.map((value, index) => {
+    return recipes.map((recipe, index) => {
       return (
-        <CardRecipe
-          key={index}
-          id={id}
-          urlImg={urlImg}
-          recipeTitle={recipeTitle}
-          numberOfPortions={numberOfPortions}
-          time={time}
+        <CardRecipe 
+          key={recipe.id}
+          id={recipe.id}
+          urlImg={!!recipe.imgURL ? recipe.imgURL : '/img/teste.jpg'}
+          recipeTitle={recipe.title}
+          numberOfPortions={recipe.number_of_portions}
+          time={recipe.time}
         />
       )
     })
+
+    // const temporaryArray = [1, 2, 3, 4, 5, 6]
+    // return temporaryArray.map((value, index) => {
+    //   return (
+    //     <CardRecipe
+    //       key={index}
+    //       id={id}
+    //       urlImg={urlImg}
+    //       recipeTitle={recipeTitle}
+    //       numberOfPortions={numberOfPortions}
+    //       time={time}
+    //     />
+    //   )
+    // })
   }
 
   return (

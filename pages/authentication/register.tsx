@@ -100,8 +100,8 @@ export default function Register() {
           <CustomButton
             backgroundColor='#d49898'
             margin={{marginTop: '15px'}}
-            // onclick={(e) => handleRegister(e)}
-            onclick={() => router.push('/recipes/recipes')}
+            onclick={(e) => handleRegister(e)}
+            // onclick={() => router.push('/recipes/recipes')}
             type='submit'
           >
             Cadastrar

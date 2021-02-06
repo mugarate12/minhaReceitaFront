@@ -97,8 +97,8 @@ export default function Login() {
           backgroundColor='#d49898'
           margin={{ marginTop: '15px' }}
           width='219px'
-          // onclick={() => logUser()}
-          onclick={() => router.push('/recipes/recipes')}
+          onclick={() => logUser()}
+          // onclick={() => router.push('/recipes/recipes')}
         >
           Entrar
         </CustomButton>

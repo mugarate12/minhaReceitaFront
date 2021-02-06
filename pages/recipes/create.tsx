@@ -47,7 +47,13 @@ export default function CreateRecipe() {
     data.append('number_of_portions', number_of_portions)
     data.append('preparation_mode', preparation_mode)
     data.append('observations', observations)
-    data.append('img', recipeImg)
+    if (!!recipeImg) {
+      data.append('img', recipeImg)
+    }
+    if (!!ingredients) {
+      console.log(ingredients)
+      data.append('ingredients', JSON.stringify(ingredients))
+    }
 
     if (isNotEmptyFields) {
       await api.post('/recipes', data, {
@@ -60,7 +66,7 @@ export default function CreateRecipe() {
           
         })
         .catch((error: Error) => {
-          console.error(error)
+          console.error(error.message)
           alert('informações incorretas, verifique se todos os campos estão preenchidos corretamente.')
         })
     }
@@ -209,8 +215,8 @@ export default function CreateRecipe() {
           backgroundColor='#d49898'
           margin={{ marginTop: '30px', marginBottom: '60px' }}
           width='260px'
-          // onclick={() => createRecipeInAPI()}
-          onclick={() => alert('ok')}
+          onclick={() => createRecipeInAPI()}
+          // onclick={() => alert('ok')}
         >
           Registrar
         </Button>
