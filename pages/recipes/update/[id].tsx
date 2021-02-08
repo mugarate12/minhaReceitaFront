@@ -27,7 +27,8 @@ import api from './../../../config/api'
 interface ingredientsInterface {
   id: number,
   name: string,
-  measure: string
+  measure: string,
+  recipeIDFK: string
 }
 
 interface newIngredientsInterface {
@@ -61,6 +62,7 @@ export default function UpdateRecipe() {
   const [previousObservations, setPreviousObservations] = useState<string>('')
 
   const [ingredients, setIngredients] = useState<Array<ingredientsInterface>>([])
+  const [ingredientsForDelete, setIngredientsForDelete] = useState<Array<ingredientsInterface>>([])
 
   async function getRecipeByID() {
     const token = sessionStorage.getItem('token')
@@ -71,8 +73,6 @@ export default function UpdateRecipe() {
       }
     })
       .then(response => {
-        console.log(response.data)
-
         if (!!response.data.recipe.imgURL) setRecipeImgURL(response.data.recipe.imgURL)
         
         setPreviousTitle(response.data.recipe.title)
@@ -89,12 +89,110 @@ export default function UpdateRecipe() {
       })
   }
 
+  async function updateRecipeRequest() {
+    const token = sessionStorage.getItem('token')
+    
+    try {
+      // atualiza os ingredientes
+      ingredients.forEach(async (ingredient, index) => {
+        await api.put(`/recipes/${id}/ingredients/${ingredient.id}`, {
+          name: ingredient.name,
+          measure: ingredient.measure
+        }, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+      })
+
+      // deleta ingredientes
+      ingredientsForDelete.forEach(async (ingredient, index) => {
+        await api.delete(`/ingredients/${ingredient.id}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+      })
+
+      // cria novos ingredientes
+      const haveNewIngredients = newIngredients.length > 0
+
+      if (haveNewIngredients) {
+        let createArrayIngredients = newIngredients.map((ingredient, index) => {
+          ingredient['recipeIDFK'] = id
+          return ingredient
+        })
+  
+        await api.post('/ingredients', {
+          ingredients: createArrayIngredients
+        }, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+          .then(response => {
+            setNewIngredients([])
+          })
+      }
+
+      // atualiza informações gerais
+      let recipeData = {}
+      !!title ? recipeData['title'] = title : null
+      !!time ? recipeData['time'] = String(time) : null
+      !!number_of_portions ? recipeData['number_of_portions'] = number_of_portions : null
+      !!preparation_mode ? recipeData['preparation_mode'] = preparation_mode : null
+      !!observations ? recipeData['observations'] = observations : null
+
+      const isNotEmptyData = Object.keys(recipeData).length > 0
+      if (isNotEmptyData) {
+        await api.put(`/recipes/${id}`, recipeData, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+      }
+
+      // atualiza foto
+      if (!!recipeImg) {
+        const data = new FormData()
+        data.append('img', recipeImg)
+
+        await api.put(`/recipes/${id}/img`, data, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+      }
+
+      alert('Receita atualizada com sucesso!')
+      router.push('/recipes/recipes')
+    } catch (error) {
+      alert('ocorreu um erro inexperado, tente novamente')
+    }
+  }
+
   function setIngredient(payload: string, index: number, type: 'name' | 'measure') {
     let newArrayIngredients = ingredients
   
     newArrayIngredients[index][type] = payload
 
     setIngredients([...newArrayIngredients])
+  }
+
+  function deleteIngredient(index: number) {
+    let ingredient = {
+      id: ingredients[index].id,
+      name: ingredients[index].name,
+      measure: ingredients[index].measure,
+      recipeIDFK: ingredients[index].recipeIDFK
+    }
+
+    let newArrayIngredients = ingredients.filter((ingredient, ingredientIndex) => {
+      return ingredientIndex !== index
+    })
+
+    setIngredients(newArrayIngredients)
+    setIngredientsForDelete([...ingredientsForDelete, ingredient])
   }
 
   function renderIngredients() {
@@ -130,6 +228,14 @@ export default function UpdateRecipe() {
             // onClick={() => createIngredient()}
           >
             <EditIcon />
+          </IconButton>
+          
+          <IconButton 
+            aria-label='editar ingrediente' 
+            color='inherit'
+            onClick={() => deleteIngredient(index)}
+          >
+            <DeleteIcon />
           </IconButton>
         </div>
       )
@@ -168,7 +274,7 @@ export default function UpdateRecipe() {
             color='secondary'
             onClick={() => deleteNewIngredient(index)}
           >
-            <DeleteIcon />
+            <DeleteIcon fontSize='large'/>
           </IconButton>
         </div>
       )
@@ -319,7 +425,7 @@ export default function UpdateRecipe() {
 
         {renderNewIngredients()}
 
-        <div className={styles.updateFieldContainer}>
+        <div className={styles.updateFieldContainer} style={{marginTop: '40px'}}>
           <PreviousTextInformation
             state={preparation_mode}
             textDescription={previousPreparationMode}
@@ -352,7 +458,9 @@ export default function UpdateRecipe() {
           margin= {{
             marginTop: '15px'
           }}
-        >Atualizar</Button>
+          onclick={() => updateRecipeRequest()}
+        >
+          Atualizar</Button>
       </div>
     </Layout>
   );

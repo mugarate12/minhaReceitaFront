@@ -30,7 +30,6 @@ export default function Recipes() {
       }
     })
       .then(response => {
-        console.log(response.data)
         setRecipes(response.data.recipes)
       })
       .catch(error => {
