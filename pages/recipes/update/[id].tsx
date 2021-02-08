@@ -1,7 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import Head from 'next/head'
+
+import IconButton from '@material-ui/core/IconButton'
+import InputM from '@material-ui/core/TextField'
+
+import EditIcon from '@material-ui/icons/Edit'
+import AddIcon from '@material-ui/icons/Add'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 import Layout from './../../../components/Layout'
 import Header from './../../../components/Header'
@@ -15,16 +22,184 @@ import Image from './../../../components/Image'
 
 import styles from './../../../styles/UpdateRecipe.module.css'
 
+import api from './../../../config/api'
+
+interface ingredientsInterface {
+  id: number,
+  name: string,
+  measure: string
+}
+
+interface newIngredientsInterface {
+  name: string,
+  measure: string
+}
+
 export default function UpdateRecipe() {
   const router = useRouter()
   const { id } = router.query
 
+  // inputs state
   const [recipeImg, setRecipeImg] =useState<File>()
   const [title, setTitle] = useState<string>('')
   const [time, setTime] = useState<number>(0)
   const [number_of_portions, setNumber_of_portions] = useState<number>(0)
   const [preparation_mode, setPreparation_mode] = useState<string>('')
   const [observations, setObservations] = useState<string>('')
+  
+  const [newIngredients, setNewIngredients] = useState<Array<newIngredientsInterface>>([])
+  const [newIngredientName, setNewIngredientName] = useState<string>('')
+  const [newIngredientMeasure, setNewIngredientMeasure] = useState<string>('')
+
+  // state on actual data recipe received from API
+  const [recipeImgURL, setRecipeImgURL] = useState<string>('/img/teste.jpg')
+  
+  const [previousTitle, setPreviousTitle] = useState<string>('')
+  const [previousTime, setPreviousTime] = useState<string>('')
+  const [previousNumberOfPortions, setPreviousNumberOfPortions] = useState<string>('')
+  const [previousPreparationMode, setPreviousPreparationMode] = useState<string>('')
+  const [previousObservations, setPreviousObservations] = useState<string>('')
+
+  const [ingredients, setIngredients] = useState<Array<ingredientsInterface>>([])
+
+  async function getRecipeByID() {
+    const token = sessionStorage.getItem('token')
+
+    await api.get(`/recipes/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then(response => {
+        console.log(response.data)
+
+        if (!!response.data.recipe.imgURL) setRecipeImgURL(response.data.recipe.imgURL)
+        
+        setPreviousTitle(response.data.recipe.title)
+        setPreviousTime(response.data.recipe.time)
+        setPreviousNumberOfPortions(response.data.recipe.number_of_portions)
+        setPreviousObservations(response.data.recipe.observations)
+        setPreviousPreparationMode(response.data.recipe.preparation_mode)
+        
+        setIngredients(response.data.recipe.ingredients)
+      })
+      .catch(error => {
+        alert('ocorreu um erro ao tentar consultar informações, por favor, tente novamente')
+        router.push('/recipes/recipes')
+      })
+  }
+
+  function setIngredient(payload: string, index: number, type: 'name' | 'measure') {
+    let newArrayIngredients = ingredients
+  
+    newArrayIngredients[index][type] = payload
+
+    setIngredients([...newArrayIngredients])
+  }
+
+  function renderIngredients() {
+    return ingredients.map((ingredient, index) => {
+      return (
+        <div
+          className={styles.ingredientsContainer}
+          key={index}
+        >
+          <InputM
+            label='ingrediente'
+            variant="outlined"
+            value={ingredient.name}
+            style={{
+              width: '120px'
+            }}
+            onChange={(e) => setIngredient(e.target.value, index, 'name')}
+          />
+
+          <InputM
+            label='medida'
+            variant="outlined"
+            style={{
+              width: '120px'
+            }}
+            value={ingredient.measure}
+            onChange={(e) => setIngredient(e.target.value, index, 'measure')}
+          />
+
+          <IconButton 
+            aria-label='editar ingrediente' 
+            color='inherit'
+            // onClick={() => createIngredient()}
+          >
+            <EditIcon />
+          </IconButton>
+        </div>
+      )
+    })
+  }
+
+  function renderNewIngredients() {
+    return newIngredients.map((ingredient, index) => {
+      return (
+        <div
+          className={styles.ingredientsContainer}
+          key={index}
+        >
+          <InputM
+            label='ingrediente'
+            variant="outlined"
+            value={ingredient.name}
+            style={{
+              width: '120px'
+            }}
+            disabled={true}
+          />
+
+          <InputM
+            label='medida'
+            variant="outlined"
+            style={{
+              width: '120px'
+            }}
+            value={ingredient.measure}
+            disabled={true}
+          />
+
+          <IconButton 
+            aria-label='deletar ingrediente' 
+            color='secondary'
+            onClick={() => deleteNewIngredient(index)}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </div>
+      )
+    })
+  }
+
+  function createNewIngredient() {
+    const isNotEmpty = !!newIngredientName && newIngredientMeasure
+
+    if (isNotEmpty) {
+      setNewIngredients([...newIngredients, {
+        name: newIngredientName,
+        measure: newIngredientMeasure
+      }])
+
+      setNewIngredientName('')
+      setNewIngredientMeasure('')
+    }
+  }
+
+  function deleteNewIngredient(index: number) {
+    let deleteNewIngredients = newIngredients.filter((ingredient, ingredientIndex) => {
+      return ingredientIndex !== index
+    })
+
+    setNewIngredients(deleteNewIngredients)
+  }
+
+  useEffect(() => {
+    getRecipeByID()
+  }, [])
 
   return (
     <Layout>
@@ -40,7 +215,7 @@ export default function UpdateRecipe() {
         <div className={styles.updateFieldContainer}>
           <div className={styles.imgContainer}>
             <Image
-              src={!!recipeImg ? URL.createObjectURL(recipeImg) : '/img/teste.jpg'}
+              src={!!recipeImg ? URL.createObjectURL(recipeImg) : recipeImgURL}
               alt='imagem da receita'
             />
           </div>
@@ -54,7 +229,7 @@ export default function UpdateRecipe() {
         <div className={styles.updateFieldContainer}>
           <PreviousTextInformation
             state={title}
-            textDescription='Titulo da receita'
+            textDescription={previousTitle}
           />
 
           <Input
@@ -69,7 +244,7 @@ export default function UpdateRecipe() {
         <div className={styles.updateFieldContainer}>
           <PreviousTextInformation
             state={time > 0 ? 'valid' : ''}
-            textDescription='40 min'
+            textDescription={previousTime}
           />
 
           <div className={styles.inputNumberContainer}>
@@ -89,7 +264,7 @@ export default function UpdateRecipe() {
         <div className={styles.updateFieldContainer}>
           <PreviousTextInformation
             state={number_of_portions > 0 ? 'valid' : ''}
-            textDescription='10 porções'
+            textDescription={`${previousNumberOfPortions} porções`}
           />
 
           <div className={styles.inputNumberContainer}>
@@ -106,12 +281,48 @@ export default function UpdateRecipe() {
           </div>
         </div>
 
+        <h5 className={styles.ingredientTitleApresentation}>seus ingredientes</h5>
+        {renderIngredients()}
+
+        <h5 className={styles.ingredientTitleApresentation}>adicionar novos</h5>
+        <div
+          className={styles.ingredientsContainer}
+        >
+          <InputM
+            label='ingrediente'
+            variant="outlined"
+            value={newIngredientName}
+            style={{
+              width: '120px'
+            }}
+            onChange={(e) => setNewIngredientName(e.target.value)}
+          />
+
+          <InputM
+            label='medida'
+            variant="outlined"
+            style={{
+              width: '120px'
+            }}
+            value={newIngredientMeasure}
+            onChange={(e) => setNewIngredientMeasure(e.target.value)}
+          />
+
+          <IconButton 
+            aria-label='editar ingrediente' 
+            color='primary'
+            onClick={() => createNewIngredient()}
+          >
+            <AddIcon fontSize='large' />
+          </IconButton>
+        </div>
+
+        {renderNewIngredients()}
+
         <div className={styles.updateFieldContainer}>
           <PreviousTextInformation
             state={preparation_mode}
-            textDescription={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lorem urna, scelerisque in eros at, tristique blandit magna. Mauris dictum sit amet diam sed pretium. Morbi quis rhoncus odio, eu lacinia magna. Vestibulum hendrerit tempus quam vel accumsan. Sed ornare lectus quis nisi suscipit ornare. Phasellus a dictum urna. Sed leo arcu, pulvinar non varius ut, eleifend ac leo. Sed dignissim faucibus interdum. Praesent tincidunt quam et diam facilisis, nec suscipit lorem maximus. Morbi orci mauris, rhoncus finibus tellus dapibus, maximus condimentum dui.
-
-            Nulla vestibulum nisi vitae neque vulputate, non mattis ipsum ullamcorper. Aenean et enim placerat, luctus nunc at, dignissim sapien. Aliquam viverra enim purus, eget porttitor magna vulputate vitae. Morbi ullamcorper magna pellentesque bibendum fermentum. Proin non nunc risus. Curabitur elementum ipsum ac magna rutrum, non laoreet urna lobortis. Proin vitae tincidunt eros, ac euismod justo. Nam facilisis odio tempus nisl egestas interdum quis nec lorem. Aliquam erat volutpat.`}
+            textDescription={previousPreparationMode}
           />
 
           <TextField
@@ -124,9 +335,7 @@ export default function UpdateRecipe() {
         <div className={styles.updateFieldContainer}>
           <PreviousTextInformation
             state={observations}
-            textDescription={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lorem urna, scelerisque in eros at, tristique blandit magna. Mauris dictum sit amet diam sed pretium. Morbi quis rhoncus odio, eu lacinia magna. Vestibulum hendrerit tempus quam vel accumsan. Sed ornare lectus quis nisi suscipit ornare. Phasellus a dictum urna. Sed leo arcu, pulvinar non varius ut, eleifend ac leo. Sed dignissim faucibus interdum. Praesent tincidunt quam et diam facilisis, nec suscipit lorem maximus. Morbi orci mauris, rhoncus finibus tellus dapibus, maximus condimentum dui.
-
-            Nulla vestibulum nisi vitae neque vulputate, non mattis ipsum ullamcorper. Aenean et enim placerat, luctus nunc at, dignissim sapien. Aliquam viverra enim purus, eget porttitor magna vulputate vitae. Morbi ullamcorper magna pellentesque bibendum fermentum. Proin non nunc risus. Curabitur elementum ipsum ac magna rutrum, non laoreet urna lobortis. Proin vitae tincidunt eros, ac euismod justo. Nam facilisis odio tempus nisl egestas interdum quis nec lorem. Aliquam erat volutpat.`}
+            textDescription={previousObservations}
           />
 
           <TextField

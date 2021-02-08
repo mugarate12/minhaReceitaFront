@@ -42,6 +42,25 @@
   margin-bottom: 15px;
 }
 
+.ingredientsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-left: 10px;
+  padding-right: 10px;
+
+  margin-bottom: 10px;
+}
+
+.ingredientTitleApresentation {
+  font-family: var(--titleFont);
+  font-size: 24px;
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
 @media (min-width: 500px) {
   .updateFieldContainer {
     width: 85%;
@@ -49,10 +68,18 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .ingredientsContainer{
+    width: 85%;
+  }
 }
 
 @media (min-width: 800px) {
   .updateFieldContainer {
+    width: 50%;
+  }
+
+  .ingredientsContainer{
     width: 50%;
   }
 }
