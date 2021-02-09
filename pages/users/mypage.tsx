@@ -44,7 +44,6 @@ export default function MyPage() {
       }
     })
       .then(response => {
-        console.log(response.data)
         setUser(response.data.user)
       })
       .catch(error => {
@@ -93,25 +92,10 @@ export default function MyPage() {
             <Card text='X receitas'>
               <ReceiptIcon fontSize='large' color='action'/>
             </Card>
-            {/* <div className={styles.card}>
-              <div className={styles.cardIconContainer}>
-                <ReceiptIcon fontSize='large' color='action'/>
-              </div>
-
-              <p className={styles.cardText}>X receitas</p>
-            </div> */}
 
             <Card text='Ver receitas'>
               <EditIcon fontSize='large' color='action'/>
             </Card>
-            {/* <div className={styles.card}>
-              <div className={styles.cardIconContainer}>
-                <FastfoodIcon fontSize='large' color='action'/>
-              </div>
-
-              <p className={styles.cardText}>Ver receitas</p>
-            </div> */}
-            
 
             <Card 
               text='Editar perfil'
@@ -119,16 +103,6 @@ export default function MyPage() {
             >
               <EditIcon fontSize='large' color='action'/>
             </Card>
-            {/* <div 
-              className={styles.card}
-              onClick={() => router.push('/users/updateMyUser')}
-            >
-              <div className={styles.cardIconContainer}>
-                <EditIcon fontSize='large' color='action'/>
-              </div>
-
-              <p className={styles.cardText}>Editar perfil</p>
-            </div> */}
           </div>
         </div>
       </div>

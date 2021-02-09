@@ -35,15 +35,18 @@
   font-family: var(--titleFont);
   font-size: 24px;
   font-size: 1.5rem;
+  text-align: center;
 
   margin-right: 10px;
   margin-bottom: 20px;
+
 }
 
 .TextApresentationTextContent {
   font-family: var(--contentFont);
   font-size: 16px;
   font-size: 1rem;
+  text-align: center;
 
   margin-top: 0px;
 }
@@ -131,11 +134,15 @@
   .TextApresentationTextTitle {
     font-size: 36px;
     font-size: 2.25rem;
+
+    text-align: left;
   }
 
   .TextApresentationTextContent {
     font-size: 24px;
     font-size: 1.5rem;
+
+    text-align: left;
   }
 
   .informationTextTitle {

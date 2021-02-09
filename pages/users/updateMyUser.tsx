@@ -1,6 +1,6 @@
-import { useState } from 'react'
-
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 import Layout from './../../components/Layout'
 import Header from './../../components/Header'
@@ -14,12 +14,104 @@ import Image from './../../components/Image'
 
 import styles from './../../styles/UpdateRecipe.module.css'
 
+import api from './../../config/api'
+
 export default function UpdateMyUSer() {
+  const router = useRouter()
+
   const [userImg, setUserImg] = useState<File>()
   const [name, setName] = useState<string>('')
   const [username, setUsername] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [biografy, setBiografy] = useState<string>('')
+
+  const [isValidUsername, setIsValidUsername] = useState<string>('')
+  
+  // data on API Request
+  const [userImgURL, setUserImgURL] = useState<string>('/img/teste.jpg')
+  const [previousName, setPreviousName] = useState<string>('')
+  const [previousUsername, setPreviousUsername] = useState<string>('')
+  const [previousEmail, setPreviousEmail] = useState<string>('')
+  const [previousBiografy, setPreviousBiografy] = useState<string>('Ainda não existe biografia, adicione uma')
+
+  async function getUSerInformation() {
+    const token = sessionStorage.getItem('token')
+
+    await api.get('/users', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then(response => {
+        console.log(response.data)
+        const { biografy, email, imgURL, name, username } = response.data.user
+        
+        setPreviousEmail(email)
+        setPreviousName(name)
+        setPreviousUsername(username)
+        
+        if (!!biografy) {
+          setPreviousBiografy(biografy)
+        }
+        
+        if (!!imgURL) {
+          setUserImgURL(imgURL)
+        }
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
+  async function updateUserInformations() {
+    if (!!username) {
+      const isValid = await getIsValidUsername()
+      if (!isValid) {
+        setIsValidUsername('username já está em uso!')
+        return
+      }
+    }
+
+    const token = sessionStorage.getItem('token')
+    const data = new FormData()
+    
+    if (!!biografy) data.append('biografy', biografy)
+    if (!!email) data.append('email', email)
+    if (!!username) data.append('username', username)
+    if (!!name) data.append('name', name)
+    if (!!userImg) data.append('img', userImg)
+
+    await api.put('/users', data, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then(response => {
+        console.log(response.data)
+        alert('informação atualizada com sucesso!')
+        router.push('/users/mypage')
+      })
+      .catch(error => {
+        console.log(error)
+        alert('Ocorreu um erro inexperado, verifique as informações e tente novamente')
+      })
+  }
+
+  async function getIsValidUsername() {
+    return await api.get(`/users/${username}/valid`)
+      .then(response => {
+        const isValid = !!response.data.valid
+
+        return isValid
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
+  useEffect(() => {
+    getUSerInformation()
+  }, [])
 
   return (
     <Layout>
@@ -35,7 +127,7 @@ export default function UpdateMyUSer() {
         <div className={styles.updateFieldContainer}>
           <div className={styles.imgContainer}>
             <Image 
-              src={!!userImg ? URL.createObjectURL(userImg) : '/img/teste.jpg'}
+              src={!!userImg ? URL.createObjectURL(userImg) : userImgURL}
               alt='imagem do usuário'
             />
           </div>
@@ -49,14 +141,14 @@ export default function UpdateMyUSer() {
         <div className={styles.updateFieldContainer}>
           <PreviousTextInformation
             state={name}
-            textDescription='Meu nome'
+            textDescription={previousName}
           />
 
           <Input
-            label='titulo da receita'
+            label='nome'
             state={name}
             setState={setName}
-            placeholder='Novo titulo'
+            placeholder='novo nome'
             width='250px'
           />
         </div>
@@ -64,29 +156,37 @@ export default function UpdateMyUSer() {
         <div className={styles.updateFieldContainer}>
           <PreviousTextInformation
             state={username}
-            textDescription='@meuusername'
+            textDescription={`@${previousUsername}`}
           />
 
-          <Input
-            label='titulo da receita'
-            state={username}
-            setState={setUsername}
-            placeholder='Novo titulo'
-            width='250px'
-          />
+          <div>
+            <Input
+              label='username'
+              state={username}
+              setState={setUsername}
+              placeholder='novo username'
+              width='250px'
+            />
+            <p
+              className={styles.validUser}
+              style={{
+                color: isValidUsername === 'username já está em uso!' ? 'red' : 'green'
+              }}
+            >{isValidUsername}</p>
+          </div>
         </div>
         
         <div className={styles.updateFieldContainer}>
           <PreviousTextInformation
             state={email}
-            textDescription='Meu email'
+            textDescription={previousEmail}
           />
 
           <Input
-            label='titulo da receita'
+            label='email'
             state={email}
             setState={setEmail}
-            placeholder='Novo titulo'
+            placeholder='seu novo email'
             width='250px'
           />
         </div>
@@ -94,13 +194,11 @@ export default function UpdateMyUSer() {
         <div className={styles.updateFieldContainer}>
           <PreviousTextInformation
             state={biografy}
-            textDescription={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lorem urna, scelerisque in eros at, tristique blandit magna. Mauris dictum sit amet diam sed pretium. Morbi quis rhoncus odio, eu lacinia magna. Vestibulum hendrerit tempus quam vel accumsan. Sed ornare lectus quis nisi suscipit ornare. Phasellus a dictum urna. Sed leo arcu, pulvinar non varius ut, eleifend ac leo. Sed dignissim faucibus interdum. Praesent tincidunt quam et diam facilisis, nec suscipit lorem maximus. Morbi orci mauris, rhoncus finibus tellus dapibus, maximus condimentum dui.
-
-            Nulla vestibulum nisi vitae neque vulputate, non mattis ipsum ullamcorper. Aenean et enim placerat, luctus nunc at, dignissim sapien. Aliquam viverra enim purus, eget porttitor magna vulputate vitae. Morbi ullamcorper magna pellentesque bibendum fermentum. Proin non nunc risus. Curabitur elementum ipsum ac magna rutrum, non laoreet urna lobortis. Proin vitae tincidunt eros, ac euismod justo. Nam facilisis odio tempus nisl egestas interdum quis nec lorem. Aliquam erat volutpat.`}
+            textDescription={previousBiografy}
           />
 
           <TextField
-            label='Modo de preparo'
+            label='Biografia'
             state={biografy}
             setState={setBiografy}
           />
@@ -112,6 +210,7 @@ export default function UpdateMyUSer() {
           margin= {{
             marginTop: '15px'
           }}
+          onclick={() => updateUserInformations()}
         >Atualizar</Button>
       </div>
     </Layout>

@@ -31,7 +31,7 @@ export default function CardMyPage({ children, text, onclick }: Props) {
   return (
     <button 
       className={styles.btn}
-      onClick={() => onclick()}
+      onClick={!!onclick ? () => onclick() : () => {}}
     >
       <Card className={classes.root}>
         <CardContent>
