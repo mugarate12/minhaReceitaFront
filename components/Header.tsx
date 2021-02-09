@@ -43,14 +43,25 @@ export default function Header({ isHomePage, renderMenu }: Props) {
       )
     }
   }
+
+  function goToHomePage() {
+    const token = sessionStorage.getItem('token')
+
+    if (!!token) {
+      router.push('/recipes/recipes')
+    } else {
+      router.push('/')
+    }
+  }
   
   return (
     <header className={styles.headerContainer}>
-      <Link href="/">
-        <a >
-          <img src="/recipe.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </Link>
+      <a 
+        onClick={() => goToHomePage()}
+      >
+        <img src="/recipe.svg" alt="Vercel Logo" className={styles.logo} />
+      </a>
+
 
       {homePageOptions()}
       {Menu()}

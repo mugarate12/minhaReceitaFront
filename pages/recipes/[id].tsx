@@ -42,8 +42,6 @@ export default function Recipe() {
       }
     })
       .then(response => {
-        console.log(response.data)
-
         if (!!response.data.recipe.imgURL) setRecipeImgURL(response.data.recipe.imgURL)
         
         setTitle(response.data.recipe.title)
@@ -61,8 +59,8 @@ export default function Recipe() {
   }
 
   function renderIngredients() {
-    return ingredients.map((ingredient, value) => {
-      return <li className={styles.recipeLi}>{ingredient.measure} de {ingredient.name}</li>
+    return ingredients.map((ingredient, index) => {
+      return <li key={index} className={styles.recipeLi}>{ingredient.measure} de {ingredient.name}</li>
     })
   }
 
@@ -117,9 +115,6 @@ export default function Recipe() {
             <h5 className={styles.title}>Ingredientes</h5>
 
             <ul className={styles.recipeUl}>
-              {/* <li className={styles.recipeLi}>Açucar</li>
-              <li className={styles.recipeLi}>Tempero</li>
-              <li className={styles.recipeLi}>E tudo que há de bom</li> */}
               {renderIngredients()}
             </ul>
           </div>

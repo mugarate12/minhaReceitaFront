@@ -84,9 +84,10 @@ export default function Login() {
           </CustomButton>
 
           <CustomButton 
-            variant='outlined' 
+            backgroundColor='rgba(250, 197, 229, 90%)'
+            variant='contained' 
             size='small' 
-            colorMaterialUI='secondary'
+            // colorMaterialUI='secondary'
             onclick={() => router.push('/authentication/register')}
             >
             Inscrever-se

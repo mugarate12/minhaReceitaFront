@@ -15,7 +15,8 @@ import Divider from '@material-ui/core/Divider'
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast'
 import LocalDiningIcon from '@material-ui/icons/LocalDining'
 import PersonIcon from '@material-ui/icons/Person'
-import UpdateIcon from '@material-ui/icons/Update'
+import LockIcon from '@material-ui/icons/Lock'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 
 import styles from './../styles/HeaderMenu.module.css'
 
@@ -75,7 +76,38 @@ export default function HeaderMenu() {
           
           <ListItemText><span className={styles.menuItemText}>Meus Dados</span></ListItemText>
         </ListItem>
+        
+        <ListItem  
+          button={true}
+          onClick={() => router.push('/users/changePassword')}
+        >
+          <ListItemIcon>
+            <LockIcon/>
+          </ListItemIcon>
+          
+          <ListItemText><span className={styles.menuItemText}>Alterar senha</span></ListItemText>
+        </ListItem>
+
+        <Divider />
       </>
+    )
+  }
+
+  function logoutOptions() {
+    return (
+      <ListItem  
+        button={true}
+        onClick={() => {
+          sessionStorage.removeItem('token')
+          router.push('/')
+        }}
+      >
+        <ListItemIcon>
+          <ExitToAppIcon/>
+        </ListItemIcon>
+        
+        <ListItemText><span className={styles.menuItemText}>Sair</span></ListItemText>
+      </ListItem>
     )
   }
 
@@ -92,6 +124,7 @@ export default function HeaderMenu() {
         <List>
           {recipesOptions()}
           {userOptions()}
+          {logoutOptions()}
         </List>
       </Drawer>
     </IconButton>
