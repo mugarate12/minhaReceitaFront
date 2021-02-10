@@ -12,6 +12,7 @@ import ReceiptIcon from '@material-ui/icons/Receipt'
 import FastfoodIcon from '@material-ui/icons/Fastfood'
 import EditIcon from '@material-ui/icons/Edit'
 
+
 import styles from './../../styles/MyPage.module.css'
 
 import api from './../../config/api'
@@ -24,8 +25,9 @@ interface userInformationInterface {
   username: string
 }
 
-export default function MyPage() {
+export default function MyPageByUsername() {
   const router = useRouter()
+  const { username } = router.query
 
   const [user, setUser] = useState<userInformationInterface>({
     biografy: 'Minha biografia é esta',
@@ -36,18 +38,14 @@ export default function MyPage() {
   })
 
   async function getUSerInformation() {
-    const token = sessionStorage.getItem('token')
+    console.log(username)
 
-    await api.get('/users', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
+    await api.get(`/users/${username}`)
       .then(response => {
-        setUser(response.data.user)
+        console.log(response.data)
       })
       .catch(error => {
-        console.log(error)
+        alert('ocorreu um erro inexperado, recarregue a página!')
       })
   }
 
@@ -58,12 +56,12 @@ export default function MyPage() {
   return (
     <Layout>
       <Head>
-        <title>Sua página</title>
+        <title>Página de {user.name}</title>
       </Head>
 
-      <Header renderMenu={true} />
+      <Header />
 
-      <PageDescription title='Sua página'/>
+      <PageDescription title={`Página de ${user.name}`}/>
 
       <div className={styles.mainContainer}>
         <div className={styles.ApresentationContainer}>
@@ -93,15 +91,10 @@ export default function MyPage() {
               <ReceiptIcon fontSize='large' color='action'/>
             </Card>
 
+            <div></div>
+
             <Card text='Ver receitas'>
               <FastfoodIcon fontSize='large' color='action'/>
-            </Card>
-
-            <Card 
-              text='Editar perfil'
-              onclick={() => router.push('/users/updateMyUser')}
-            >
-              <EditIcon fontSize='large' color='action'/>
             </Card>
           </div>
         </div>
