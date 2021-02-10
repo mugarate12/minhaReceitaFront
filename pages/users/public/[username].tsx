@@ -3,19 +3,19 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import Layout from './../../components/Layout'
-import Header from './../../components/Header'
-import PageDescription from './../../components/PageDescription'
-import Card from './../../components/CardMyPage'
+import Layout from './../../../components/Layout'
+import Header from './../../../components/Header'
+import PageDescription from './../../../components/PageDescription'
+import Card from './../../../components/CardMyPage'
 
 import ReceiptIcon from '@material-ui/icons/Receipt'
 import FastfoodIcon from '@material-ui/icons/Fastfood'
 import EditIcon from '@material-ui/icons/Edit'
 
 
-import styles from './../../styles/MyPage.module.css'
+import styles from './../../../styles/MyPage.module.css'
 
-import api from './../../config/api'
+import api from './../../../config/api'
 
 interface userInformationInterface {
   biografy: string,
@@ -38,11 +38,15 @@ export default function MyPageByUsername() {
   })
 
   async function getUSerInformation() {
-    console.log(username)
-
     await api.get(`/users/${username}`)
       .then(response => {
-        console.log(response.data)
+        const isNotHaveUserWithThisName = Object.keys(response.data).length <= 0
+
+        if (isNotHaveUserWithThisName) {
+          alert('Não existe usuário com esse username')
+        } else {
+          setUser(response.data.user)
+        }
       })
       .catch(error => {
         alert('ocorreu um erro inexperado, recarregue a página!')
@@ -50,13 +54,15 @@ export default function MyPageByUsername() {
   }
 
   useEffect(() => {
-    getUSerInformation()
-  }, [])
+    if (!!username) {
+      getUSerInformation()
+    }
+  }, [username])
 
   return (
     <Layout>
       <Head>
-        <title>Página de {user.name}</title>
+        <title>Perfil</title>
       </Head>
 
       <Header />
