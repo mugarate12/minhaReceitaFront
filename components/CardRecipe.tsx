@@ -11,8 +11,11 @@ import TimerIcon from '@material-ui/icons/Timer'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import EditIcon from '@material-ui/icons/Edit'
 import ShareIcon from '@material-ui/icons/Share'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 import styles from './../styles/CardRecipe.module.css'
+
+import api from './../config/api'
 
 type Props = {
   urlImg: string;
@@ -28,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'grid',
     gridTemplateColumns: '1fr 2fr',
     height: '150px',
-    width: '250px'
+    width: '270px'
   },
   details: {
     backgroundColor: ' rgba(255, 191, 183, 0.6)'
@@ -51,6 +54,23 @@ const useStyles = makeStyles((theme) => ({
 export default function CardRecipe({ id, urlImg, recipeTitle, numberOfPortions, time, onClick}: Props) {
   const classes = useStyles()
   const router = useRouter()
+
+  async function deleteRecipe() {
+    const token = sessionStorage.getItem('token')
+
+    await api.delete(`/recipes/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then(response => {
+        alert('receita deletada com sucesso!')
+        location.reload()
+      })
+      .catch(error => {
+        alert('ocorreu um erro inexperado, tente novamente!')
+      })
+  }
 
   return (
     <Card className={classes.root}>
@@ -79,17 +99,21 @@ export default function CardRecipe({ id, urlImg, recipeTitle, numberOfPortions, 
           <IconButton
             onClick={() => router.push(`/recipes/${id}`)}
           >
-            <VisibilityIcon />
+            <VisibilityIcon color='primary' />
           </IconButton>
 
           <IconButton
             onClick={() => router.push(`/recipes/update/${id}`)}
           >
-            <EditIcon />
+            <EditIcon color='primary' />
           </IconButton>
           
           <IconButton>
-            <ShareIcon />
+            <ShareIcon color='action' />
+          </IconButton>
+
+          <IconButton onClick={() => deleteRecipe()}>
+            <DeleteIcon color='secondary' />
           </IconButton>
         </div>
       </div>
