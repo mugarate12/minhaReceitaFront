@@ -1,9 +1,12 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
-import styles from './../styles/Header.module.css'
 import CustomButton from './Button'
 import HeaderMenu from './HeaderMenu'
+import NavMenu from './NavMenu'
+
+import styles from './../styles/Header.module.css'     
 
 type Props = {
   isHomePage?: boolean;
@@ -12,6 +15,8 @@ type Props = {
 
 export default function Header({ isHomePage, renderMenu }: Props) {
   const router = useRouter()
+
+  const bigWidth = useMediaQuery('(max-width:1000px)')
 
   function homePageOptions() {
     if(isHomePage) {
@@ -38,9 +43,16 @@ export default function Header({ isHomePage, renderMenu }: Props) {
 
   function Menu() {
     if (!isHomePage && renderMenu) {
-      return (
-        <HeaderMenu />
-      )
+      if (bigWidth) {
+        return (
+          <HeaderMenu />
+        )  
+      } else {
+        return (
+          <NavMenu />
+        )
+      }
+      
     }
   }
 

@@ -61,20 +61,6 @@ export default function Recipes() {
         />
       )
     })
-
-    // const temporaryArray = [1, 2, 3, 4, 5, 6]
-    // return temporaryArray.map((value, index) => {
-    //   return (
-    //     <CardRecipe
-    //       key={index}
-    //       id={id}
-    //       urlImg={urlImg}
-    //       recipeTitle={recipeTitle}
-    //       numberOfPortions={numberOfPortions}
-    //       time={time}
-    //     />
-    //   )
-    // })
   }
 
   return (

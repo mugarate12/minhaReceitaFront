@@ -1,0 +1,27 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-right: 30px;
+
+  cursor: pointer;
+}
+
+.option:hover {
+  opacity: 0.7;
+
+  transition: 0.7s;
+}
+
+.optionText {
+  font-family: var(--contentFont);
+  font-size: 20px;
+}
