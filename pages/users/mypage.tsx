@@ -34,6 +34,7 @@ export default function MyPage() {
     name: 'Meu nome',
     username: '@meuUsername'
   })
+  const [totalOfRecipes, setTotalOfRecipes] = useState<number>(0)
 
   async function getUSerInformation() {
     const token = sessionStorage.getItem('token')
@@ -45,6 +46,7 @@ export default function MyPage() {
     })
       .then(response => {
         setUser(response.data.user)
+        setTotalOfRecipes(response.data.totalOfRecipes)
       })
       .catch(error => {
         console.log(error)
@@ -89,7 +91,7 @@ export default function MyPage() {
         
 
           <div className={styles.cardsContainer}>
-            <Card text='X receitas'>
+            <Card text={`${totalOfRecipes} receitas`}>
               <ReceiptIcon fontSize='large' color='action'/>
             </Card>
 

@@ -34,6 +34,7 @@ export default function MyPageByUsername() {
     name: 'Meu nome',
     username: '@meuUsername'
   })
+  const [totalOfRecipes, setTotalOfRecipes] = useState<number>(0)
 
   async function getUSerInformation() {
     await api.get(`/users/${username}`)
@@ -44,6 +45,7 @@ export default function MyPageByUsername() {
           alert('Não existe usuário com esse username')
         } else {
           setUser(response.data.user)
+          setTotalOfRecipes(response.data.totalOfRecipes)
         }
       })
       .catch(error => {
@@ -91,7 +93,7 @@ export default function MyPageByUsername() {
         
 
           <div className={styles.cardsContainer}>
-            <Card text='X receitas'>
+            <Card text={`${totalOfRecipes} receitas`}>
               <ReceiptIcon fontSize='large' color='action'/>
             </Card>
 

@@ -68,7 +68,7 @@ export default function ChangePassword() {
 
       <Header renderMenu={true} />
 
-      <div className={styles.mainContainer}>
+      <form className={styles.mainContainer}>
         <Input label='email' width='260px' state={email} placeholder='seu email' setState={setEmail}/>
         <Input label='senha atual' width='260px' state={currentPassword} placeholder='sua senha atual' setState={setCurrentPassword} type='password'/>
         <Input label='nova senha' width='260px' state={newPassword} placeholder='sua nova senha' setState={setNewPassword} type='password'/>
@@ -82,7 +82,7 @@ export default function ChangePassword() {
         >
           Atualizar
         </Button>
-      </div>
+      </form>
     </Layout>
   )
 }

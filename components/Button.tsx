@@ -20,8 +20,6 @@ type Props = {
 }
 
 export default function CustomButton({ variant, size, colorMaterialUI, textColor, backgroundColor, margin ,children, onclick, type, width }: Props) {
-  
-
   return (
     <>
     <Button 

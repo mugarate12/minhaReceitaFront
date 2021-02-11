@@ -22,13 +22,13 @@ import styles from './../styles/HeaderMenu.module.css'
 
 export default function HeaderMenu() {
   const small = useMediaQuery('(min-width:500px)')
-  const router = useRouter()
   const useStyles = makeStyles({
     paper: {
       backgroundColor: '#FEE6CD',
       width: small ? '30%' : '50%'
     }
   })
+  const router = useRouter()
   const classes = useStyles()
   const [openMenu, setOpenMenu] = useState<boolean>(false)
   

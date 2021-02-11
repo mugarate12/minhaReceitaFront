@@ -25,7 +25,6 @@ export default function CardMyPage({ children, text, onclick }: Props) {
   }))
 
   const classes = useStyles()
-  const router = useRouter()
 
   return (
     <button 

@@ -82,14 +82,28 @@ export default function CardRecipe({ id, urlImg, recipeTitle, numberOfPortions, 
         <div className={classes.controls}>
           <IconButton
             onClick={() => {
-              // console.log(username)
               router.push(`/recipes/publicRecipe/${id}`)
             }}
           >
             <VisibilityIcon color='primary' />
           </IconButton>
           
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              const myText = `http://localhost:3000/recipes/publicRecipe/${id}`
+              
+              let textArea = document.createElement('textarea')
+              textArea.innerText = myText
+              document.body.appendChild(textArea)
+
+              textArea.select()
+
+              document.execCommand('copy')
+
+              textArea.remove()
+              alert('link pra divulgação copiado, basta dar ctrl+V ou colar onde desejar')
+            }}
+          >
             <ShareIcon color='action' />
           </IconButton>
         </div>
