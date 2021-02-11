@@ -10,8 +10,6 @@ import Card from './../../../components/CardMyPage'
 
 import ReceiptIcon from '@material-ui/icons/Receipt'
 import FastfoodIcon from '@material-ui/icons/Fastfood'
-import EditIcon from '@material-ui/icons/Edit'
-
 
 import styles from './../../../styles/MyPage.module.css'
 
@@ -99,7 +97,10 @@ export default function MyPageByUsername() {
 
             <div></div>
 
-            <Card text='Ver receitas'>
+            <Card 
+              text='Ver receitas'
+              onclick={() => router.push(`/recipes/public/${username}`)}
+            >
               <FastfoodIcon fontSize='large' color='action'/>
             </Card>
           </div>
