@@ -5,6 +5,7 @@ import Layout from './../../components/Layout'
 import Header from './../../components/Header'
 import PageDescription from './../../components/PageDescription'
 import CardRecipe from './../../components/CardRecipe'
+import Pagination from './../../components/Pagination'
 
 import styles from './../../styles/Recipes.module.css'
 
@@ -20,17 +21,25 @@ interface recipesInterface {
 
 export default function Recipes() {
   const [recipes, setRecipes] = useState<Array<recipesInterface>>([])
+  const [totalOfPages, setTotalOfPages] = useState<number>(1)
+  const [actualPage, setActualPage] = useState<number>(1)
 
   async function getRecipesFromUser() {
     const token = sessionStorage.getItem('token')
 
-    await api.get('/recipes?page=1', {
+    await api.get(`/recipes?page=${actualPage}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
       .then(response => {
+        const numberOfRecipesPerPage = 10
+        const numbersOfPages = Number(String(response.data.totalOfRecipes / numberOfRecipesPerPage)[0])
+        const haveMoreThanOnePageOrUniquePage = numbersOfPages >= 1
+
+        console.log(response.data)
         setRecipes(response.data.recipes)
+        setTotalOfPages(haveMoreThanOnePageOrUniquePage ? numbersOfPages : 1)
       })
       .catch(error => {
         alert('impossivel encontrar registros, por favor, atualize a página!')
@@ -76,6 +85,12 @@ export default function Recipes() {
       <div className={styles.mainContainer} >
         {renderCardRecipes()}
       </div>
+
+      <Pagination
+        numberOfPages={totalOfPages}
+        actualPage={actualPage}
+        setActualPage={setActualPage}
+      />
     </Layout>
   );
 }

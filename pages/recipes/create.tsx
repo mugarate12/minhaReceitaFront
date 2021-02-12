@@ -51,7 +51,6 @@ export default function CreateRecipe() {
       data.append('img', recipeImg)
     }
     if (!!ingredients) {
-      console.log(ingredients)
       data.append('ingredients', JSON.stringify(ingredients))
     }
 
