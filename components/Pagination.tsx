@@ -39,8 +39,6 @@ export default function Pagination({ numberOfPages, actualPage, setActualPage }:
     arrayButtons.length = numberOfPages
     arrayButtons.fill(0)
 
-    console.log(arrayButtons)
-
     return arrayButtons.map((value, index) => {
       const maxOfViewPages = numberOfPages > 4
       const activePage = (index + 1) === actualPage

@@ -37,7 +37,6 @@ export default function Recipes() {
         const numbersOfPages = Number(String(response.data.totalOfRecipes / numberOfRecipesPerPage)[0])
         const haveMoreThanOnePageOrUniquePage = numbersOfPages >= 1
 
-        console.log(response.data)
         setRecipes(response.data.recipes)
         setTotalOfPages(haveMoreThanOnePageOrUniquePage ? numbersOfPages : 1)
       })
@@ -52,12 +51,6 @@ export default function Recipes() {
 
 
   function renderCardRecipes() {
-    const urlImg = '/img/teste.jpg'
-    const recipeTitle = 'Titulo da receita'
-    const numberOfPortions = 'Serve x porções'
-    const time = '40min'
-    const id = '1'
-
     return recipes.map((recipe, index) => {
       return (
         <CardRecipe 
