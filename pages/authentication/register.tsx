@@ -1,13 +1,18 @@
 import { useState } from 'react'
 import Head from 'next/head'
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
 
-import Layout from './../../components/Layout'
-import Figure from './../../components/figure'
-import Header from './../../components/Header'
-import PageDescription from './../../components/PageDescription'
-import Input from './../../components/Input'
-import CustomButton from './../../components/Button'
+import {
+  Layout,
+  Figure,
+  PageDescription,
+  Input,
+  Button as CustomButton
+} from './../../components'
+
+import {
+  Header
+} from './../../containers'
 
 import styles from './../../styles/Register.module.css'
 

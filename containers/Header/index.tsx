@@ -2,11 +2,17 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
-import CustomButton from './Button'
-import HeaderMenu from './HeaderMenu'
-import NavMenu from './NavMenu'
+import {
+  Button as CustomButton,
+  HeaderMenu,
+  NavMenu
+} from './../../components'
 
-import styles from './../styles/Header.module.css'     
+// import CustomButton from './Button'
+// import HeaderMenu from './HeaderMenu'
+// import NavMenu from './NavMenu'
+
+import styles from './Header.module.css'     
 
 type Props = {
   isHomePage?: boolean;

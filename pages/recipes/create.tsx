@@ -2,14 +2,19 @@ import { useState } from 'react'
 import Head from 'next/head'
 import FormData from 'form-data'
 
-import Layout from './../../components/Layout'
-import Header from './../../components/Header'
-import PageDescription from './../../components/PageDescription'
-import Input from './../../components/Input'
-import Button from './../../components/Button'
-import Figure from './../../components/figure'
-import CustomTextField from './../../components/TextField'
-import InputFile from './../../components/InputFile'
+import {
+  Layout,
+  PageDescription,
+  Input,
+  Button,
+  Figure,
+  TextField as CustomTextField,
+  InputFile
+} from './../../components'
+
+import {
+  Header
+} from './../../containers'
 
 import IconButton from '@material-ui/core/IconButton'
 import AddIcon from '@material-ui/icons/Add'

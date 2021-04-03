@@ -1,4 +1,4 @@
-import styles from './../styles/PageDescription.module.css'
+import styles from './PageDescription.module.css'
 
 type Props = {
   title: string
@@ -7,5 +7,5 @@ type Props = {
 export default function PageDescription({ title }: Props) {
   return (
     <h3 className={styles.description} >{title}</h3>
-  );
+  )
 }

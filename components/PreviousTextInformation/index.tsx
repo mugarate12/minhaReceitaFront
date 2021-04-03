@@ -1,4 +1,4 @@
-import styles from './../styles/PreviousTextInformation.module.css'
+import styles from './PreviousTextInformation.module.css'
 
 type Props = {
   state: string,

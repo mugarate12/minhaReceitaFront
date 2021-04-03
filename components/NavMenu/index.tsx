@@ -6,7 +6,7 @@ import PersonIcon from '@material-ui/icons/Person'
 import LockIcon from '@material-ui/icons/Lock'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 
-import styles from './../styles/NavMenu.module.css'
+import styles from './NavMenu.module.css'
 
 export default function NavMenu() {
   const router = useRouter()

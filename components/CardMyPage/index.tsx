@@ -1,11 +1,10 @@
 import { ReactNode } from 'react'
-import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 
-import styles from './../styles/CardMyPage.module.css'
+import styles from './CardMyPage.module.css'
 
 type Props = {
   children: ReactNode,

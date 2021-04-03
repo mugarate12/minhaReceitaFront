@@ -2,11 +2,16 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
-import Layout from './../../components/Layout'
-import PageDescription from './../../components/PageDescription'
-import Header from './../../components/Header'
-import Input from './../../components/Input'
-import Button from './../../components/Button'
+import {
+  Layout,
+  PageDescription,
+  Input,
+  Button
+} from './../../components'
+
+import {
+  Header
+} from './../../containers'
 
 import styles from './../../styles/ChangePassword.module.css'
 

@@ -1,6 +1,4 @@
-import { useState } from 'react'
-
-import styles from './../styles/Image.module.css'
+import styles from './Image.module.css'
 
 type Props = {
   src: string,

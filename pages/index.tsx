@@ -3,9 +3,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 import styles from '../styles/Home.module.css'
-import Layout from './../components/Layout'
-import CustomButton from './../components/Button'
-import CardRecipe from './../components/CardRecipe'
+import {
+  Layout,
+  Button as CustomButton,
+  CardRecipe
+} from './../components'
 
 export default function Home() {
   const router = useRouter()

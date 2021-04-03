@@ -1,11 +1,16 @@
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
 
-import Layout from './../../components/Layout'
-import Header from './../../components/Header'
-import PageDescription from './../../components/PageDescription'
-import CardRecipe from './../../components/CardRecipe'
-import Pagination from './../../components/Pagination'
+import {
+  Layout,
+  PageDescription,
+  CardRecipe,
+  Pagination
+} from './../../components'
+
+import {
+  Header
+} from './../../containers'
 
 import styles from './../../styles/Recipes.module.css'
 

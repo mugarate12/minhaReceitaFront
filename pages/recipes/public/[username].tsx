@@ -2,11 +2,16 @@ import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import Layout from './../../../components/Layout'
-import Header from './../../../components/Header'
-import PageDescription from './../../../components/PageDescription'
-import CardRecipe from './../../../components/CardRecipePublic'
-import Pagination from './../../../components/Pagination'
+import {
+  Layout,
+  PageDescription,
+  CardRecipePublic as CardRecipe,
+  Pagination
+} from './../../../components'
+
+import {
+  Header
+} from './../../../containers'
 
 import styles from './../../../styles/Recipes.module.css'
 

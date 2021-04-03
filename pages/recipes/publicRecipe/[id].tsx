@@ -6,9 +6,14 @@ import { useRouter } from 'next/router'
 import RoomServiceIcon from '@material-ui/icons/RoomService'
 import TimerIcon from '@material-ui/icons/Timer'
 
-import Layout from './../../../components/Layout'
-import Header from './../../../components/Header'
-import PageDescription from './../../../components/PageDescription'
+import {
+  Layout,
+  PageDescription
+} from './../../../components'
+
+import {
+  Header
+} from './../../../containers'
 
 import styles from './../../../styles/Recipe.module.css'
 

@@ -10,15 +10,20 @@ import EditIcon from '@material-ui/icons/Edit'
 import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
 
-import Layout from './../../../components/Layout'
-import Header from './../../../components/Header'
-import PageDescription from './../../../components/PageDescription'
-import InputFile from './../../../components/InputFile'
-import Input from './../../../components/Input'
-import PreviousTextInformation from './../../../components/PreviousTextInformation'
-import TextField from './../../../components/TextField'
-import Button from './../../../components/Button'
-import Image from './../../../components/Image'
+import {
+  Layout,
+  PageDescription,
+  InputFile,
+  Input,
+  PreviousTextInformation,
+  TextField,
+  Button,
+  Image
+} from './../../../components'
+
+import {
+  Header
+} from './../../../containers'
 
 import styles from './../../../styles/UpdateRecipe.module.css'
 

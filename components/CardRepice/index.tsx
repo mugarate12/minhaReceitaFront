@@ -13,9 +13,9 @@ import EditIcon from '@material-ui/icons/Edit'
 import ShareIcon from '@material-ui/icons/Share'
 import DeleteIcon from '@material-ui/icons/Delete'
 
-import styles from './../styles/CardRecipe.module.css'
+import styles from './CardRecipe.module.css'
 
-import api from './../config/api'
+import api from './../../config/api'
 
 type Props = {
   urlImg: string;
@@ -24,46 +24,46 @@ type Props = {
   time: string;
   id: string;
   onClick?: Function;
-  username?: string;
 }
 
-export default function CardRecipe({ id, urlImg, recipeTitle, numberOfPortions, time, onClick, username}: Props) {
-  const useStyles = makeStyles((theme) => ({
-    root: {
+export default function CardRecipe({ id, urlImg, recipeTitle, numberOfPortions, time, onClick}: Props) {
+  const router = useRouter()
+
+  async function deleteRecipe() {
+    const token = sessionStorage.getItem('token')
+
+    await api.delete(`/recipes/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then(response => {
+        alert('receita deletada com sucesso!')
+        location.reload()
+      })
+      .catch(error => {
+        alert('ocorreu um erro inexperado, tente novamente!')
+      })
+  }
+
+  return (
+    <Card style={{
       display: 'grid',
       gridTemplateColumns: '1fr 2fr',
       height: '150px',
       width: '270px'
-    },
-    details: {
-      backgroundColor: ' rgba(255, 191, 183, 0.6)'
-    },
-    content: {
-      marginLeft: '5px',
-      height: '100px'
-    },
-    cover: {
-  
-    },
-    controls: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%'
-    }
-  }))
-
-  const classes = useStyles()
-  const router = useRouter()
-
-  return (
-    <Card className={classes.root}>
+    }}>
       <CardMedia 
         image={urlImg}
         title='imagem da receita'
       />
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
+      <div style={{
+        backgroundColor: ' rgba(255, 191, 183, 0.6)'
+      }}>
+        <CardContent style={{
+          marginLeft: '5px',
+          height: '100px'
+        }}>
           <div className={styles.recipeTitleContainer}>
             <h5 className={styles.recipeTitle} >{recipeTitle}</h5>
           </div>
@@ -79,13 +79,22 @@ export default function CardRecipe({ id, urlImg, recipeTitle, numberOfPortions, 
           </div>
         </CardContent>
 
-        <div className={classes.controls}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%'
+        }}>
           <IconButton
-            onClick={() => {
-              router.push(`/recipes/publicRecipe/${id}`)
-            }}
+            onClick={() => router.push(`/recipes/${id}`)}
           >
             <VisibilityIcon color='primary' />
+          </IconButton>
+
+          <IconButton
+            onClick={() => router.push(`/recipes/update/${id}`)}
+          >
+            <EditIcon color='primary' />
           </IconButton>
           
           <IconButton
@@ -105,6 +114,10 @@ export default function CardRecipe({ id, urlImg, recipeTitle, numberOfPortions, 
             }}
           >
             <ShareIcon color='action' />
+          </IconButton>
+
+          <IconButton onClick={() => deleteRecipe()}>
+            <DeleteIcon color='secondary' />
           </IconButton>
         </div>
       </div>

@@ -18,7 +18,7 @@ import PersonIcon from '@material-ui/icons/Person'
 import LockIcon from '@material-ui/icons/Lock'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 
-import styles from './../styles/HeaderMenu.module.css'
+import styles from './HeaderMenu.module.css'
 
 export default function HeaderMenu() {
   const small = useMediaQuery('(min-width:500px)')

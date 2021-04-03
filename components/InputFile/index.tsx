@@ -2,7 +2,7 @@ import { SetStateAction, Dispatch, useState } from 'react'
 
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile'
 
-import styles from './../styles/InputFile.module.css'
+import styles from './InputFile.module.css'
 
 type Props = {
   setState: Dispatch<SetStateAction<any>>,

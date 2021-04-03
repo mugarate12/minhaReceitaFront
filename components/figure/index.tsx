@@ -1,4 +1,4 @@
-import styles from './../styles/Figure.module.css'
+import styles from './Figure.module.css'
 
 type Props = {
   listOfStates: Array<string>
