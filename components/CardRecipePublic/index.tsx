@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import { makeStyles } from '@material-ui/core/styles'
 
 import IconButton from '@material-ui/core/IconButton'
 import Card from '@material-ui/core/Card'
@@ -9,9 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia'
 import RoomServiceIcon from '@material-ui/icons/RoomService'
 import TimerIcon from '@material-ui/icons/Timer'
 import VisibilityIcon from '@material-ui/icons/Visibility'
-import EditIcon from '@material-ui/icons/Edit'
 import ShareIcon from '@material-ui/icons/Share'
-import DeleteIcon from '@material-ui/icons/Delete'
 
 import styles from './../CardRepice/CardRecipe.module.css'
 
@@ -28,42 +25,26 @@ type Props = {
 }
 
 export default function CardRecipe({ id, urlImg, recipeTitle, numberOfPortions, time, onClick, username}: Props) {
-  const useStyles = makeStyles((theme) => ({
-    root: {
+  const router = useRouter()
+
+  return (
+    <Card style={{
       display: 'grid',
       gridTemplateColumns: '1fr 2fr',
       height: '150px',
       width: '270px'
-    },
-    details: {
-      backgroundColor: ' rgba(255, 191, 183, 0.6)'
-    },
-    content: {
-      marginLeft: '5px',
-      height: '100px'
-    },
-    cover: {
-  
-    },
-    controls: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%'
-    }
-  }))
-
-  const classes = useStyles()
-  const router = useRouter()
-
-  return (
-    <Card className={classes.root}>
+    }}>
       <CardMedia 
         image={urlImg}
         title='imagem da receita'
       />
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
+      <div style={{
+        backgroundColor: ' rgba(255, 191, 183, 0.6)'
+      }}>
+        <CardContent style={{
+          marginLeft: '5px',
+          height: '100px'
+        }}>
           <div className={styles.recipeTitleContainer}>
             <h5 className={styles.recipeTitle} >{recipeTitle}</h5>
           </div>
@@ -79,7 +60,12 @@ export default function CardRecipe({ id, urlImg, recipeTitle, numberOfPortions, 
           </div>
         </CardContent>
 
-        <div className={classes.controls}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%'
+        }}>
           <IconButton
             onClick={() => {
               router.push(`/recipes/publicRecipe/${id}`)

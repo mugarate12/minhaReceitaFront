@@ -8,11 +8,7 @@ import {
   NavMenu
 } from './../../components'
 
-// import CustomButton from './Button'
-// import HeaderMenu from './HeaderMenu'
-// import NavMenu from './NavMenu'
-
-import styles from './Header.module.css'     
+import styles from './Header.module.css'
 
 type Props = {
   isHomePage?: boolean;
@@ -79,7 +75,6 @@ export default function Header({ isHomePage, renderMenu }: Props) {
       >
         <img src="/recipe.svg" alt="Vercel Logo" className={styles.logo} />
       </a>
-
 
       {homePageOptions()}
       {Menu()}

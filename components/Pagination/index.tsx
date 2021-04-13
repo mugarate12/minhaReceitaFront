@@ -1,7 +1,6 @@
 import { SetStateAction, Dispatch } from 'react'
 
 import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 type Props = {
@@ -12,27 +11,6 @@ type Props = {
 
 export default function Pagination({ numberOfPages, actualPage, setActualPage }: Props) {
   const desktopWidth = useMediaQuery('(min-width:900px)')
-  const useStyles = makeStyles((theme) => ({
-    container: {
-      width: '100%',
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: desktopWidth ? 'flex-end' : 'center',
-      paddingRight: desktopWidth ? '20px' : '0px',
-      marginTop: '100px',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-    btn: {
-      backgroundColor: 'rgba(255, 191, 183, 0.6)',
-      width: '20px',
-      paddingLeft: '2px',
-      paddingRight: '2px'
-    }
-  }))
-
-  const classes = useStyles()
 
   function renderButtons() {
     let arrayButtons = []
@@ -50,23 +28,35 @@ export default function Pagination({ numberOfPages, actualPage, setActualPage }:
           return <Button
             key={index}
             variant="contained" 
-            className={classes.btn}
+            style={{
+              backgroundColor: 'rgba(255, 191, 183, 0.6)',
+              width: '20px',
+              paddingLeft: '2px',
+              paddingRight: '2px'
+            }}
             onClick={() => setActualPage(index + 1)}
           >{index + 1}</Button>
         } else if (activePage) {
           return <Button 
             key={index}
             variant="contained" 
-            className={classes.btn}
             style={{
-              backgroundColor: '#d49898'
+              backgroundColor: '#d49898',
+              width: '20px',
+              paddingLeft: '2px',
+              paddingRight: '2px'
             }}
             >{index + 1}</Button>
         } else if (pageAfterActivePage) {
           return <Button
             key={index}
             variant="contained" 
-            className={classes.btn}
+            style={{
+              backgroundColor: 'rgba(255, 191, 183, 0.6)',
+              width: '20px',
+              paddingLeft: '2px',
+              paddingRight: '2px'
+            }}
             onClick={() => setActualPage(index + 1)}
           >{index + 1}</Button>
         }
@@ -75,33 +65,62 @@ export default function Pagination({ numberOfPages, actualPage, setActualPage }:
           return <Button 
             key={index}
             variant="contained" 
-            className={classes.btn}
             style={{
-              backgroundColor: '#d49898'
+              backgroundColor: '#d49898',
+              width: '20px',
+              paddingLeft: '2px',
+              paddingRight: '2px'
             }}
             >{index + 1}</Button>
         } else {
           return <Button
             key={index}
             variant="contained" 
-            className={classes.btn}
+            style={{
+              backgroundColor: 'rgba(255, 191, 183, 0.6)',
+              width: '20px',
+              paddingLeft: '2px',
+              paddingRight: '2px'
+            }}
             onClick={() => setActualPage(index + 1)}
           >{index + 1}</Button>
         }
       }
     })
-    
   }
 
   return (
-    <div className={classes.container}>
-      <Button variant="contained" className={classes.btn}>{'<'}</Button>
+    <div style={{
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: desktopWidth ? 'flex-end' : 'center',
+      paddingRight: desktopWidth ? '20px' : '0px',
+      marginTop: '100px',
+      gap: '10px'
+    }}>
+      <Button variant="contained" style={{
+        backgroundColor: 'rgba(255, 191, 183, 0.6)',
+        width: '20px',
+        paddingLeft: '2px',
+        paddingRight: '2px'
+      }}>{'<'}</Button>
       {/* <Button variant="contained" className={classes.btn}>1</Button>
       <Button variant="contained" className={classes.btn}>2</Button>
       <Button variant="contained" className={classes.btn}>3</Button> */}
       {renderButtons()}
-      <Button variant="contained" className={classes.btn}>...</Button>
-      <Button variant="contained" className={classes.btn}>{'>'}</Button>
+      <Button variant="contained" style={{
+        backgroundColor: 'rgba(255, 191, 183, 0.6)',
+        width: '20px',
+        paddingLeft: '2px',
+        paddingRight: '2px'
+      }}>...</Button>
+      <Button variant="contained" style={{
+        backgroundColor: 'rgba(255, 191, 183, 0.6)',
+        width: '20px',
+        paddingLeft: '2px',
+        paddingRight: '2px'
+      }}>{'>'}</Button>
     </div>
   )
 }

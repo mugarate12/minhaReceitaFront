@@ -48,7 +48,6 @@ export default function UpdateMyUSer() {
       }
     })
       .then(response => {
-        console.log(response.data)
         const { biografy, email, imgURL, name, username } = response.data.user
         
         setPreviousEmail(email)
@@ -92,7 +91,6 @@ export default function UpdateMyUSer() {
       }
     })
       .then(response => {
-        console.log(response.data)
         alert('informação atualizada com sucesso!')
         router.push('/users/mypage')
       })

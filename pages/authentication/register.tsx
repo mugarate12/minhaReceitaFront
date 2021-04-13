@@ -104,7 +104,7 @@ export default function Register() {
       <PageDescription title='Cadastrar-se' />
 
       <div className={styles.container}>
-        <Figure listOfStates={[name, email, password, confirmPassword]} />
+        <Figure listOfStates={[name, email, username, password, confirmPassword]} />
 
         <form className={styles.form}>
           <Input label='name' state={name} setState={setName} />

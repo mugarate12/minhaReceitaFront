@@ -3,10 +3,14 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import Layout from './../../../components/Layout'
-import Header from './../../../components/Header'
-import PageDescription from './../../../components/PageDescription'
-import Card from './../../../components/CardMyPage'
+import {
+  Layout,
+  PageDescription,
+  CardMyPage as Card
+} from './../../../components'
+import {
+  Header
+} from './../../../containers'
 
 import ReceiptIcon from '@material-ui/icons/Receipt'
 import FastfoodIcon from '@material-ui/icons/Fastfood'
